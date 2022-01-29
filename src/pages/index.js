@@ -1,13 +1,12 @@
-import * as React from "react"
+import * as React from "react";
+import { Layout } from "../layouts/index";
 
-// markup
 const IndexPage = () => {
   return (
-    <main>
-      <title>Space Tourism Web</title>
-      
-    </main>
-  )
-}
+    <Layout>
+      Home page
+    </Layout>
+  );
+};
 
-export default IndexPage
+export default IndexPage;
