@@ -3,7 +3,16 @@ import React from "react";
 import { Heading, Paragraph } from "theme-ui";
 
 export const HeadingOne = ({ children, sx }) => (
-  <Heading as="h1" sx={{ fontSize: 7, color: "white", ...sx }}>
+  <Heading
+    as="h1"
+    sx={{
+      color: "white",
+      fontSize: [80, 150, 150],
+      lineHeight: [1.25, 1, 1],
+      textAlign: ["center", "center", "left"],
+      ...sx,
+    }}
+  >
     {children}
   </Heading>
 );
@@ -31,9 +40,10 @@ export const HeadingFive = ({ children, sx }) => (
     as="h5"
     sx={{
       fontFamily: "body",
-      fontSize: 3,
+      fontSize: [16, 20, 28],
       color: "lila",
-      letterSpacing: 2,
+      letterSpacing: [2.7, 3.37, 4.72],
+      textAlign: ["center", "center", "left"],
       ...sx,
     }}
   >
@@ -72,8 +82,11 @@ export const SubHeadingTwo = ({ children, sx }) => (
 export const BodyText = ({ children, sx }) => (
   <Paragraph
     sx={{
-      color: "white",
-      fontSize: 2,
+      fontFamily: "barlow, sans serif",
+      color: "lila",
+      fontSize: [15, 16, 18],
+      lineHeight: [1.67, 1.75, 1.78],
+      textAlign: ["center", "center", "left"],
       ...sx,
     }}
   >
