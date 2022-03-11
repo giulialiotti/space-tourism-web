@@ -63,5 +63,29 @@ const TextBlock = ({ data: { subHeadline, headline, paragraph } }) => (
 );
 
 const ExploreButton = ({ button }) => (
-  <Button sx={{ alignSelf: ["center", "center", "flex-end"] }}>{button}</Button>
+  <Button
+    sx={{
+      alignSelf: ["center", "center", "flex-end"],
+      position: "relative",
+      "&:hover > span": {
+        transform: ["scale(1.3)", "scale(1.5)", "scale(1.6)"],
+      },
+    }}
+  >
+    {button}
+    <Box
+      as="span"
+      sx={{
+        display: "block",
+        bg: "white",
+        borderRadius: "circle",
+        inset: 0,
+        opacity: 0.1,
+        position: "absolute",
+        transition: "all 0.5s ease-in-out",
+        height: "100%",
+        width: "100%",
+      }}
+    />
+  </Button>
 );
