@@ -44,6 +44,7 @@ export const HeadingFive = ({ children, sx }) => (
 export const SubHeadingOne = ({ children, sx }) => (
   <Paragraph
     sx={{
+      color: "white",
       fontFamily: "heading",
       fontSize: 3,
       textTransform: "uppercase",
@@ -57,6 +58,7 @@ export const SubHeadingOne = ({ children, sx }) => (
 export const SubHeadingTwo = ({ children, sx }) => (
   <Paragraph
     sx={{
+      color: "white",
       fontSize: 0,
       letterSpacing: 0,
       textTransform: "uppercase",
@@ -70,6 +72,7 @@ export const SubHeadingTwo = ({ children, sx }) => (
 export const BodyText = ({ children, sx }) => (
   <Paragraph
     sx={{
+      color: "white",
       fontSize: 2,
       ...sx,
     }}
