@@ -1,9 +1,11 @@
 import React from "react";
 
+import { Navigation } from "../sections/navigation/Navigation";
+
 export const Layout = ({ children }) => {
   return (
     <>
-      <nav></nav>
+      <Navigation />
       <main>
         <title>Space Tourism Web</title>
         {children}

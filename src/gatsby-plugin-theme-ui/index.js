@@ -44,6 +44,12 @@ const theme = {
       height: [150, 242, 274],
       width: [150, 242, 274],
     },
+    secondary: {
+      bg: "transparent",
+      borderRadius: "unset",
+      cursor: "pointer",
+      p: 0,
+    },
   },
 };
 
