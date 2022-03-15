@@ -1,10 +1,12 @@
 import * as React from "react";
 import { Layout } from "layouts/index";
 
+import { Header } from "sections/crewPage";
+
 const CrewPage = () => {
   return (
     <Layout>
-      Crew page
+      <Header />
     </Layout>
   );
 };
