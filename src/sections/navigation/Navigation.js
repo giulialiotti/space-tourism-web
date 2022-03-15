@@ -181,6 +181,7 @@ const Line = () => (
       left: "11.6%",
       height: 1,
       width: "32.85%",
+      zIndex: 3
     }}
   />
 );
