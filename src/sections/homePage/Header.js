@@ -24,6 +24,7 @@ export const Header = ({
     <HeaderWrapper>
       <TextBlock data={textData} />
       <ExploreButton button={button} />
+      <Background />
     </HeaderWrapper>
   );
 };
@@ -32,19 +33,12 @@ const HeaderWrapper = ({ children }) => (
   <Flex
     as="header"
     sx={{
-      backgroundImage: [
-        `url(${bgMobileImg})`,
-        `url(${bgTabletImg})`,
-        `url(${bgDesktopImg})`,
-      ],
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
       flexDirection: ["column", "column", "row"],
       justifyContent: "space-between",
       pt: ["30.94%", "26.31%", "10%"],
       px: ["6.63%", "20.71%", "11.46%"],
       pb: ["13.26%", "11.72%", "9.1%"],
-      height: "100vh",
+      height: ["auto", "auto", "100vh"],
       width: "100%",
     }}
   >
@@ -67,6 +61,7 @@ const ExploreButton = ({ button }) => (
     sx={{
       alignSelf: ["center", "center", "flex-end"],
       position: "relative",
+      mt: '25%',
       "&:hover > span": {
         transform: ["scale(1.3)", "scale(1.5)", "scale(1.6)"],
       },
@@ -88,4 +83,23 @@ const ExploreButton = ({ button }) => (
       }}
     />
   </Button>
+);
+
+const Background = () => (
+  <Box
+    sx={{
+      backgroundImage: [
+        `url(${bgMobileImg})`,
+        `url(${bgTabletImg})`,
+        `url(${bgDesktopImg})`,
+      ],
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      position: 'fixed',
+      inset: 0,
+      height: "100%",
+      width: "100%",
+      zIndex: -1
+    }}
+  />
 );

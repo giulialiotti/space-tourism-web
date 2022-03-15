@@ -15,6 +15,5 @@ export const useNavigationData = () => {
     }
   `);
 
-  console.log(data)
   return data;
 };
