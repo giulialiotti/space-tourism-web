@@ -5,7 +5,10 @@ export const useDestinationPageData = () => {
     query {
       data: dataJson {
         destinations {
-          headline
+          headline {
+            number
+            text
+          }
           places {
             name
           }
@@ -16,7 +19,12 @@ export const useDestinationPageData = () => {
           cards {
             name
             images {
-              png
+              png {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              alt
             }
             description
             distance

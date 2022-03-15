@@ -18,7 +18,16 @@ export const HeadingOne = ({ children, sx }) => (
 );
 
 export const HeadingTwo = ({ children, sx }) => (
-  <Heading as="h2" sx={{ fontSize: 6, color: "white", ...sx }}>
+  <Heading
+    as="h2"
+    sx={{
+      fontSize: [56, 80, 100],
+      color: "white",
+      textAlign: ["center", "center", "left"],
+      textTransform: 'uppercase',
+      ...sx,
+    }}
+  >
     {children}
   </Heading>
 );
@@ -44,6 +53,7 @@ export const HeadingFive = ({ children, sx }) => (
       color: "lila",
       letterSpacing: [2.7, 3.37, 4.72],
       textAlign: ["center", "center", "left"],
+      textTransform: "uppercase",
       ...sx,
     }}
   >
@@ -56,7 +66,7 @@ export const SubHeadingOne = ({ children, sx }) => (
     sx={{
       color: "white",
       fontFamily: "heading",
-      fontSize: 3,
+      fontSize: 28,
       textTransform: "uppercase",
       ...sx,
     }}
@@ -68,8 +78,8 @@ export const SubHeadingOne = ({ children, sx }) => (
 export const SubHeadingTwo = ({ children, sx }) => (
   <Paragraph
     sx={{
-      color: "white",
-      fontSize: 0,
+      color: "lila",
+      fontSize: 14,
       letterSpacing: 0,
       textTransform: "uppercase",
       ...sx,
