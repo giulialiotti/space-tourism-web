@@ -6,48 +6,69 @@
       "paragraph": "Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!",
       "button": "EXPLORE"
     },
-    "destinations": [
-      {
-        "name": "Moon",
-        "images": {
-          "png": "../assets/destination/image-moon.png",
-          "webp": "../assets/destination/image-moon.webp"
+    "destinations": {
+      "headline": "<span>01</span>Pick your destination",
+      "places": [
+        {
+          "name": "MOON"
         },
-        "description": "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
-        "distance": "384,400 km",
-        "travel": "3 days"
+        {
+          "name": "MARS"
+        },
+        {
+          "name": "EUROPA"
+        },
+        {
+          "name": "TITAN"
+        }
+      ],
+      "information": {
+        "distance": "Avg. distance",
+        "time": "Est. travel time"
       },
-      {
-        "name": "Mars",
-        "images": {
-          "png": "../assets/destination/image-mars.png",
-          "webp": "../assets/destination/image-mars.webp"
+      "cards": [
+        {
+          "name": "Moon",
+          "images": {
+            "png": "../assets/destination/image-moon.png",
+            "webp": "../assets/destination/image-moon.webp"
+          },
+          "description": "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
+          "distance": "384,400 km",
+          "travel": "3 days"
         },
-        "description": "Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!",
-        "distance": "225 mil. km",
-        "travel": "9 months"
-      },
-      {
-        "name": "Europa",
-        "images": {
-          "png": "../assets/destination/image-europa.png",
-          "webp": "../assets/destination/image-europa.webp"
+        {
+          "name": "Mars",
+          "images": {
+            "png": "../assets/destination/image-mars.png",
+            "webp": "../assets/destination/image-mars.webp"
+          },
+          "description": "Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!",
+          "distance": "225 mil. km",
+          "travel": "9 months"
         },
-        "description": "The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.",
-        "distance": "628 mil. km",
-        "travel": "3 years"
-      },
-      {
-        "name": "Titan",
-        "images": {
-          "png": "../assets/destination/image-titan.png",
-          "webp": "../assets/destination/image-titan.webp"
+        {
+          "name": "Europa",
+          "images": {
+            "png": "../assets/destination/image-europa.png",
+            "webp": "../assets/destination/image-europa.webp"
+          },
+          "description": "The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.",
+          "distance": "628 mil. km",
+          "travel": "3 years"
         },
-        "description": "The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.",
-        "distance": "1.6 bil. km",
-        "travel": "7 years"
-      }
-    ],
+        {
+          "name": "Titan",
+          "images": {
+            "png": "../assets/destination/image-titan.png",
+            "webp": "../assets/destination/image-titan.webp"
+          },
+          "description": "The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.",
+          "distance": "1.6 bil. km",
+          "travel": "7 years"
+        }
+      ]
+    },
     "crew": [
       {
         "name": "Douglas Hurley",

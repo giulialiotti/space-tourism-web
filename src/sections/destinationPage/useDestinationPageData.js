@@ -5,13 +5,23 @@ export const useDestinationPageData = () => {
     query {
       data: dataJson {
         destinations {
-          name
-          images {
-            png
+          headline
+          places {
+            name
           }
-          description
-          distance
-          travel
+          information {
+            distance
+            time
+          }
+          cards {
+            name
+            images {
+              png
+            }
+            description
+            distance
+            travel
+          }
         }
       }
     }
