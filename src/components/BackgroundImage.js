@@ -4,6 +4,7 @@ import { Box } from "theme-ui";
 
 export const BackgroundImage = ({ bgMobileImg, bgTabletImg, bgDesktopImg }) => (
   <Box
+    className="page__background-image"
     sx={{
       backgroundImage: [
         `url(${bgMobileImg})`,
