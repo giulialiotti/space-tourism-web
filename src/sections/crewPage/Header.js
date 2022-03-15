@@ -1,10 +1,10 @@
 import React from "react";
 
 // External components
-import { Box, Flex } from "theme-ui";
+import { Flex } from "theme-ui";
 
 // Components
-// import { } from "components";
+import { BackgroundImage } from "components";
 
 // Assets
 import bgMobileImg from "assets/crew/background-crew-mobile.jpg";
@@ -26,20 +26,9 @@ const HeaderWrapper = ({ children }) => (
 );
 
 const Background = () => (
-  <Box
-    sx={{
-      backgroundImage: [
-        `url(${bgMobileImg})`,
-        `url(${bgTabletImg})`,
-        `url(${bgDesktopImg})`,
-      ],
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-      position: "fixed",
-      inset: 0,
-      height: "100%",
-      width: "100%",
-      zIndex: -1,
-    }}
+  <BackgroundImage
+    bgMobileImg={bgMobileImg}
+    bgTabletImg={bgTabletImg}
+    bgDesktopImg={bgDesktopImg}
   />
 );

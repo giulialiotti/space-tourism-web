@@ -4,7 +4,7 @@ import React from "react";
 import { Box, Button, Flex } from "theme-ui";
 
 // Components
-import { HeadingOne, HeadingFive, BodyText } from "components";
+import { HeadingOne, HeadingFive, BodyText, BackgroundImage } from "components";
 
 // Assets
 import bgMobileImg from "assets/home/background-home-mobile.jpg";
@@ -86,20 +86,9 @@ const ExploreButton = ({ button }) => (
 );
 
 const Background = () => (
-  <Box
-    sx={{
-      backgroundImage: [
-        `url(${bgMobileImg})`,
-        `url(${bgTabletImg})`,
-        `url(${bgDesktopImg})`,
-      ],
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-      position: "fixed",
-      inset: 0,
-      height: "100%",
-      width: "100%",
-      zIndex: -1,
-    }}
+  <BackgroundImage
+    bgMobileImg={bgMobileImg}
+    bgTabletImg={bgTabletImg}
+    bgDesktopImg={bgDesktopImg}
   />
 );
