@@ -108,7 +108,7 @@ const Links = ({ links }) => (
       pl: 0,
       position: "relative",
       zIndex: 2,
-      "& > li:nth-child(n+2)": {
+      "& > li:nth-of-type(n+2)": {
         mt: ["14.37%", 0, 0],
       },
     }}
@@ -153,7 +153,7 @@ const LinksBackground = () => (
       width: "100%",
       zIndex: 1,
       "@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none)": {
-        "-webkit-backdrop-filter": "blur(81.5485px)",
+        WebkitBackdropFilter: "blur(81.5485px)",
         backdropFilter: "blur(81.5485px)",
         bg: "rgba(255, 255, 255, 0.04)",
       },
