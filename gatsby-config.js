@@ -16,5 +16,13 @@ module.exports = {
         name: "data",
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: "./src/assets/",
+      },
+      __key: "images",
+    }
   ],
 };
