@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "theme-ui";
 
-import { Navigation } from "../sections/navigation/Navigation";
+import { Navigation } from "sections/navigation/Navigation";
 
 export const Layout = ({ children }) => {
   return (

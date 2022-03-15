@@ -4,12 +4,12 @@ import React from "react";
 import { Box, Button, Flex } from "theme-ui";
 
 // Components
-import { HeadingOne, HeadingFive, BodyText } from "../../components";
+import { HeadingOne, HeadingFive, BodyText } from "components";
 
 // Assets
-import bgMobileImg from "../../assets/home/background-home-mobile.jpg";
-import bgTabletImg from "../../assets/home/background-home-tablet.jpg";
-import bgDesktopImg from "../../assets/home/background-home-desktop.jpg";
+import bgMobileImg from "assets/home/background-home-mobile.jpg";
+import bgTabletImg from "assets/home/background-home-tablet.jpg";
+import bgDesktopImg from "assets/home/background-home-desktop.jpg";
 
 export const Header = ({
   data: { subHeadline, headline, paragraph, button },
@@ -61,7 +61,7 @@ const ExploreButton = ({ button }) => (
     sx={{
       alignSelf: ["center", "center", "flex-end"],
       position: "relative",
-      mt: '25%',
+      mt: "25%",
       "&:hover > span": {
         transform: ["scale(1.3)", "scale(1.5)", "scale(1.6)"],
       },
@@ -95,11 +95,11 @@ const Background = () => (
       ],
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
-      position: 'fixed',
+      position: "fixed",
       inset: 0,
       height: "100%",
       width: "100%",
-      zIndex: -1
+      zIndex: -1,
     }}
   />
 );

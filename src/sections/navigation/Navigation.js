@@ -7,11 +7,11 @@ import { Box, Button, Flex, Image, Link } from "theme-ui";
 import { useNavigationData } from "./useNavigationData";
 
 // Components
-import { NavLink } from "../../components";
+import { NavLink } from "components";
 
 // Assets
-import logo from "../../assets/shared/logo.svg";
-import menu from "../../assets/shared/icon-hamburger.svg";
+import logo from "assets/shared/logo.svg";
+import menu from "assets/shared/icon-hamburger.svg";
 
 export const Navigation = () => {
   const {
