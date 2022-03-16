@@ -1,7 +1,7 @@
 import React from "react";
 
 // External components
-import { Flex, Box } from "theme-ui";
+import { Flex, Box, Button } from "theme-ui";
 
 // Components
 import {
@@ -24,7 +24,7 @@ export const Header = ({ data: { headline, places, information, cards } }) => {
     // Markup
     <HeaderWrapper>
       <Headline headline={headline} />
-      <Cards cards={cards} info={information} />
+      <Cards cards={cards} info={information} places={places} />
       <Background />
     </HeaderWrapper>
   );
@@ -48,11 +48,11 @@ const Background = () => (
   />
 );
 
-const Cards = ({ info, cards }) => {
+const Cards = ({ info, cards, places }) => {
   return (
     <Flex sx={{ flexDirection: ["column", "column", "row"] }}>
       <CardsImages cards={cards} />
-      <CardsTextBlocks cards={cards} info={info} />
+      <CardsTextBlocks cards={cards} info={info} places={places} />
     </Flex>
   );
 };
@@ -65,7 +65,7 @@ const CardsImages = ({ cards }) => (
     <Flex sx={{ width: "400%" }}>
       {cards.map((card) => {
         return (
-          <Box sx={{ width: "100%" }}>
+          <Box key={card.images.alt} sx={{ width: "100%" }}>
             <ImageContainer
               img={card.images.png}
               alt={card.images.alt}
@@ -82,7 +82,7 @@ const CardTitles = ({ cards }) => (
   <Flex className="destination__cards-titles" sx={{ width: "400%" }}>
     {cards.map((card) => {
       return (
-        <HeadingTwo sx={{ mt: ["1.334%", 32], width: "100%" }}>
+        <HeadingTwo key={card.name} sx={{ mt: ["1.334%", 32], width: "100%" }}>
           {card.name}
         </HeadingTwo>
       );
@@ -97,7 +97,10 @@ const CardsDescriptions = ({ cards }) => (
   >
     {cards.map((card) => {
       return (
-        <BodyText sx={{ mx: "auto", px: "2%", width: "100%" }}>
+        <BodyText
+          key={card.description}
+          sx={{ mx: "auto", px: "2%", width: "100%" }}
+        >
           {card.description}
         </BodyText>
       );
@@ -105,11 +108,12 @@ const CardsDescriptions = ({ cards }) => (
   </Flex>
 );
 
-const CardsTextBlocks = ({ info, cards }) => (
+const CardsTextBlocks = ({ info, cards, places }) => (
   <Box
     className="destination__cards-text-blocks"
     sx={{ overflow: "hidden", mt: ["6.94%", 53] }}
   >
+    <PlacesButtons places={places} />
     <CardTitles cards={cards} />
     <CardsDescriptions cards={cards} />
     <Line />
@@ -140,11 +144,11 @@ const CardsInfo = ({ cards, distance = true }) => (
   <Flex sx={{ width: "400%" }}>
     {cards.map((card) => {
       return distance ? (
-        <SubHeadingOne sx={{ mt: ["0.8%"], width: "100%" }}>
+        <SubHeadingOne key={card.distance} sx={{ mt: ["0.8%"], width: "100%" }}>
           {card.distance}
         </SubHeadingOne>
       ) : (
-        <SubHeadingOne sx={{ mt: ["0.8%"], width: "100%" }}>
+        <SubHeadingOne key={card.travel} sx={{ mt: ["0.8%"], width: "100%" }}>
           {card.travel}
         </SubHeadingOne>
       );
@@ -161,4 +165,26 @@ const InfoWrapper = ({ info: { distance, time }, cards }) => (
       <CardsInfo cards={cards} distance={false} />
     </InfoGroup>
   </Box>
+);
+
+const PlacesButtons = ({ places }) => (
+  <Flex sx={{ justifyContent: ["center", "center", "flex-start"] }}>
+    {places.map((item) => {
+      return (
+        <Button
+          key={item.name}
+          variant="secondary"
+          sx={{
+            color: "lila",
+            fontFamily: "body",
+            fontSize: [14, 16, 16],
+            letterSpacing: ["2.36px", "2.7px"],
+            mx: [13, "17.5px", 0],
+          }}
+        >
+          {item.name}
+        </Button>
+      );
+    })}
+  </Flex>
 );
