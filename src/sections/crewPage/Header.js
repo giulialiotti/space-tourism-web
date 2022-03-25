@@ -3,7 +3,7 @@ import React from "react";
 // External components
 import { Flex } from "theme-ui";
 
-// Components
+// Local Components
 import { BackgroundImage } from "components";
 
 // Assets
@@ -13,11 +13,14 @@ import bgDesktopImg from "assets/crew/background-crew-desktop.jpg";
 
 export const Header = () => {
   return (
+    // Markup
     <HeaderWrapper>
       <Background />
     </HeaderWrapper>
   );
 };
+
+// Elements
 
 const HeaderWrapper = ({ children }) => (
   <Flex as="header" sx={{}}>

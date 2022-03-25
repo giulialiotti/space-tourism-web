@@ -3,7 +3,7 @@ import React from "react";
 // External components
 import { Flex, Box, Button } from "theme-ui";
 
-// Components
+// Local Components
 import {
   BackgroundImage,
   NumberHeadline,
@@ -35,7 +35,10 @@ export const Header = ({ data: { headline, places, information, cards } }) => {
 const HeaderWrapper = ({ children }) => (
   <Box
     as="header"
-    sx={{ pt: ["23.47%", "17.71%", "212px"], pb: ["15.47%", "8.08%", "112px"] }}
+    sx={{
+      pt: ["23.47%", "17.71%", "14.723%"],
+      pb: ["15.47%", "8.08%", "7.78%"],
+    }}
   >
     {children}
   </Box>
@@ -56,11 +59,12 @@ const Background = () => (
 const Cards = ({ info, cards, places }) => {
   return (
     <Flex
+      className="destination__cards"
       sx={{
         flexDirection: ["column", "column", "row"],
         justifyContent: [null, null, "space-between"],
-        ml: [0, 0, 230],
-        mr: [0, 0, 163],
+        ml: [0, 0, "15.98%"],
+        mr: [0, 0, "11.32%"],
       }}
     >
       <CardsImages cards={cards} />
@@ -74,8 +78,8 @@ const CardsImages = ({ cards }) => (
     className="destination__cards-images"
     sx={{
       overflow: "hidden",
-      mt: ["8.55%", "7.82%", "97px"],
-      width: [null, null, 445],
+      mt: ["8.55%", "7.82%", "9.27%"],
+      width: [null, null, "42.51%"],
     }}
   >
     <Flex sx={{ width: "400%" }}>
@@ -99,8 +103,8 @@ const CardsTextBlocks = ({ info, cards, places }) => (
     className="destination__cards-text-blocks"
     sx={{
       overflow: "hidden",
-      mt: ["6.94%", "6.91%", 64],
-      width: [null, null, 445],
+      mt: ["6.94%", "6.91%", "6.12%"],
+      width: [null, null, "42.51%"],
     }}
   >
     <PlacesButtons places={places} />
@@ -117,7 +121,7 @@ const PlacesButtons = ({ places }) => (
     sx={{
       justifyContent: ["center", "center", "flex-start"],
       "& > button:not(:last-of-type)": {
-        mr: [0, 0, 35],
+        mr: [0, 0, "8.1%"],
       },
     }}
   >
@@ -130,7 +134,7 @@ const PlacesButtons = ({ places }) => (
             color: "lila",
             fontFamily: "body",
             fontSize: [14, 16, 16],
-            letterSpacing: ["2.36px", "2.7px"],
+            letterSpacing: ["2.36px", "2.7px", "2.7px"],
             mx: ["13px", "17.5px", 0],
           }}
         >
@@ -144,7 +148,7 @@ const PlacesButtons = ({ places }) => (
 const CardTitles = ({ cards }) => (
   <Flex
     className="destination__cards-titles"
-    sx={{ mt: ["5.34%", "4.17%", 37], width: "400%" }}
+    sx={{ mt: ["5.34%", "4.17%", "8.32%"], width: "400%" }}
   >
     {cards.map((card) => {
       return (
@@ -159,7 +163,7 @@ const CardTitles = ({ cards }) => (
 const CardsDescriptions = ({ cards }) => (
   <Flex
     className="destination__cards-descriptions"
-    sx={{ mt: ["0.27%", "1.05%", 14], width: "400%" }}
+    sx={{ mt: ["0.27%", "1.05%", "3.15%"], width: "400%" }}
   >
     {cards.map((card) => {
       return (
@@ -179,7 +183,7 @@ const Line = () => (
     className="destination__card-line"
     sx={{
       bg: "#383B4B",
-      m: ["8.54% auto", "6.39% auto 3.65%", "54px 0 28px"],
+      m: ["8.54% auto", "6.39% auto 3.65%", "12.14% 0 6.3%"],
       height: 1,
       width: ["87.2%", "74.61%", "100%"],
     }}
@@ -218,7 +222,7 @@ const InfoGroup = ({ title, children, sx, ...props }) => (
 );
 
 const CardsInfo = ({ cards, distance = true }) => (
-  <Flex sx={{ mt: ["3.2%", "4.2%", 12], width: "400%" }}>
+  <Flex sx={{ mt: ["3.2%", "4.2%", "5.4%"], width: "400%" }}>
     {cards.map((card) => {
       return distance ? (
         <InfoText text={card.distance} />

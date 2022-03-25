@@ -3,7 +3,7 @@ import React from "react";
 // External components
 import { Box, Button, Flex } from "theme-ui";
 
-// Components
+// Local Components
 import { HeadingOne, HeadingFive, BodyText, BackgroundImage } from "components";
 
 // Assets
@@ -21,6 +21,7 @@ export const Header = ({
   };
 
   return (
+    // Markup
     <HeaderWrapper>
       <TextBlock data={textData} />
       <ExploreButton button={button} />
@@ -28,6 +29,8 @@ export const Header = ({
     </HeaderWrapper>
   );
 };
+
+// Elements
 
 const HeaderWrapper = ({ children }) => (
   <Flex
