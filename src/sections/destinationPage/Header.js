@@ -45,7 +45,7 @@ const HeaderWrapper = ({ children }) => (
 );
 
 const Headline = ({ headline }) => (
-  <NumberHeadline headline={headline} sx={{ pl: [0, "5.02%"] }} />
+  <NumberHeadline headline={headline} />
 );
 
 const Background = () => (

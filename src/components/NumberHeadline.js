@@ -9,7 +9,11 @@ import { HeadingFive } from "components";
 export const NumberHeadline = ({ headline: { number, text }, sx }) => (
   <Flex
     className="number-headline"
-    sx={{ m: ["0 auto", 0, 0], width: "max-content", ...sx }}
+    sx={{
+      m: ["0 auto", "0 0 0 5.02%", "0 0 0 11.53%"],
+      width: "max-content",
+      ...sx,
+    }}
   >
     <HeadingFive
       sx={{
