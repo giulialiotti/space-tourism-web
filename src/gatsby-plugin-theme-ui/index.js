@@ -1,6 +1,16 @@
 import "./fonts/fontImports";
 
 const theme = {
+  breakpoints: [
+    // Small - is added by theme-ui automatically
+    // '@media screen and (min-width: 20em)', // 320px
+  
+    // Medium
+    '@media screen and (min-width: 750px)',
+  
+    // Xlarge
+    '@media screen and (min-width: 1400px)',
+  ],
   colors: {
     black: "#0B0D17",
     lila: "#D0D6F9",
