@@ -24,7 +24,7 @@ export const HeadingTwo = ({ children, sx }) => (
       fontSize: [56, 80, 100],
       color: "white",
       textAlign: ["center", "center", "left"],
-      textTransform: 'uppercase',
+      textTransform: "uppercase",
       ...sx,
     }}
   >
@@ -33,13 +33,32 @@ export const HeadingTwo = ({ children, sx }) => (
 );
 
 export const HeadingThree = ({ children, sx }) => (
-  <Heading as="h3" sx={{ fontSize: 5, color: "white", ...sx }}>
+  <Heading
+    as="h3"
+    sx={{
+      fontSize: [24, 40, 56],
+      color: "white",
+      textAlign: ["center", "center", "left"],
+      textTransform: "uppercase",
+      ...sx,
+    }}
+  >
     {children}
   </Heading>
 );
 
 export const HeadingFour = ({ children, sx }) => (
-  <Heading as="h4" sx={{ fontSize: 4, color: "white", ...sx }}>
+  <Heading
+    as="h4"
+    sx={{
+      fontSize: [16, 24, 32],
+      color: "white",
+      opacity: "0.5",
+      textAlign: ["center", "center", "left"],
+      textTransform: "uppercase",
+      ...sx,
+    }}
+  >
     {children}
   </Heading>
 );

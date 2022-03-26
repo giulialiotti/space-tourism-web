@@ -1,12 +1,14 @@
 import * as React from "react";
 import { Layout } from "layouts/index";
 
-import { Header } from "sections/crewPage";
+import { useCrewPageData, Header } from "sections/crewPage";
 
 const CrewPage = () => {
+  const { crew } = useCrewPageData();
+
   return (
     <Layout>
-      <Header />
+      <Header data={crew} />
     </Layout>
   );
 };
