@@ -6,7 +6,14 @@ module.exports = {
   plugins: [
     "gatsby-plugin-theme-ui",
     "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
+    {
+      resolve: 'gatsby-plugin-sharp',
+      options: {
+        defaults: {
+          placeholder: `none`,
+        },
+      },
+    },
     "gatsby-transformer-sharp",
     "gatsby-transformer-json",
     {
