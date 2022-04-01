@@ -1,12 +1,14 @@
 import * as React from "react";
 import { Layout } from "layouts/index";
 
-import { Header } from "sections/technologyPage";
+import { useTechnologyData, Header } from "sections/technologyPage";
 
 const TechnologyPage = () => {
+  const { technology } = useTechnologyData();
+
   return (
     <Layout>
-      <Header />
+      <Header data={technology} />
     </Layout>
   );
 };

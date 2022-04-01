@@ -4,12 +4,12 @@ const theme = {
   breakpoints: [
     // Small - is added by theme-ui automatically
     // '@media screen and (min-width: 20em)', // 320px
-  
+
     // Medium
-    '@media screen and (min-width: 750px)',
-  
+    "@media screen and (min-width: 750px)",
+
     // Xlarge
-    '@media screen and (min-width: 1400px)',
+    "@media screen and (min-width: 1400px)",
   ],
   colors: {
     black: "#0B0D17",
@@ -59,6 +59,18 @@ const theme = {
       borderRadius: "unset",
       cursor: "pointer",
       p: 0,
+    },
+    tertiary: {
+      bg: "transparent",
+      color: "white",
+      cursor: "pointer",
+      border: "1px solid rgb(255, 255, 255, 0.25)",
+      borderRadius: "circle",
+      fontFamily: 'heading',
+      fontSize: [16, 24, 32],
+      p: 0,
+      height: [40, 60, 80],
+      width: [40, 60, 80],
     },
   },
 };

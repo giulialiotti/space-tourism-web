@@ -108,6 +108,21 @@ export const SubHeadingTwo = ({ children, sx }) => (
   </Paragraph>
 );
 
+export const SubHeadingThree = ({ children, sx }) => (
+  <Paragraph
+    sx={{
+      color: "lila",
+      fontFamily: "body",
+      fontSize: [14, 16, 16],
+      letterSpacing: ["2.36px", "2.7px", "2.7px"],
+      textTransform: "uppercase",
+      ...sx,
+    }}
+  >
+    {children}
+  </Paragraph>
+);
+
 export const BodyText = ({ children, sx }) => (
   <Paragraph
     sx={{
