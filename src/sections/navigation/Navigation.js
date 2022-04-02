@@ -86,7 +86,7 @@ const LinksWrapper = ({ links, isOpen }) => (
       alignItems: [null, "center", "center"],
       display: isOpen ? ["block", "flex", "flex"] : ["none", "flex", "flex"],
       pt: ["31.47%", 0, 0],
-      pl: ["8.55%", "6.25%", "8.55%"],
+      // pl: ["8.55%", "6.25%", "8.55%"],
       position: ["fixed", "absolute", "absolute"],
       top: 0,
       right: 0,
@@ -96,38 +96,50 @@ const LinksWrapper = ({ links, isOpen }) => (
     }}
   >
     <Links links={links} />
-    <LinksBackground />
+    {/* <LinksBackground /> */}
   </Box>
 );
 
 const Links = ({ links }) => (
-  <Flex
-    as="ul"
-    sx={{
-      flexDirection: ["column", "row", "row"],
-      pl: 0,
-      position: "relative",
-      zIndex: 2,
-      "& > li:nth-of-type(n+2)": {
-        mt: ["14.37%", 0, 0],
-      },
-    }}
-  >
-    {links.map((link) => {
-      return (
-        <Box
-          as="li"
-          key={link.name}
-          sx={{ listStyle: "none", mr: [0, 37, 50] }}
-        >
-          <NavLink href={link.to}>
-            <Number number={link.number} />
-            {link.name}
-          </NavLink>
-        </Box>
-      );
-    })}
-  </Flex>
+  <Box sx={{ width: "100%" }}>
+    <Flex
+      as="ul"
+      sx={{
+        flexDirection: ["column", "row", "row"],
+        pl: ["8.55%", "9.7%", "8.55%"],
+        position: "relative",
+        width: "100%",
+        zIndex: 2,
+        "& > li:nth-of-type(n+2)": {
+          mt: ["14.37%", 0, 0],
+        },
+      }}
+    >
+      {links.map((link) => {
+        return (
+          <Box
+            as="li"
+            key={link.name}
+            sx={{
+              overflow: "hidden",
+              position: "relative",
+              listStyle: "none",
+              mr: [0, 37, 50],
+              py: [0, "8.7%", "5.14%"],
+              zIndex: 2,
+            }}
+          >
+            <NavLink href={link.to}>
+              <Number number={link.number} />
+              {link.name}
+            </NavLink>
+          </Box>
+        );
+      })}
+    </Flex>
+
+    <LinksBackground />
+  </Box>
 );
 
 const Number = ({ number }) => (
@@ -181,7 +193,7 @@ const Line = () => (
       left: "11.6%",
       height: 1,
       width: "32.85%",
-      zIndex: 3
+      zIndex: 3,
     }}
   />
 );
