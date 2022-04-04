@@ -11,6 +11,7 @@ import {
   SubHeadingThree,
   HeadingThree,
   BodyText,
+  MotionBox,
 } from "components";
 
 // Hooks
@@ -21,16 +22,23 @@ import bgMobileImg from "assets/technology/background-technology-mobile.jpg";
 import bgTabletImg from "assets/technology/background-technology-tablet.jpg";
 import bgDesktopImg from "assets/technology/background-technology-desktop.jpg";
 
+// Framer motion
+import { AnimatePresence } from "framer-motion";
+
 export const Header = ({ data: { headline, caption, launch } }) => {
+  const [stepIndex, setStepIndex] = React.useState(0);
+
+  const stateControl = { stepIndex, setStepIndex };
+
   return (
     // Markup
     <HeaderWrapper>
       <Background />
       <NumberHeadline headline={headline} />
       <ContentWrapper>
-        <ImagesWrapper data={launch} />
-        <NumberButtonsWrapper data={launch} />
-        <TextBlocks caption={caption} data={launch} />
+        <ImagesWrapper data={launch} stepIndex={stepIndex} />
+        <NumberButtonsWrapper data={launch} stateControl={stateControl} />
+        <TextBlock caption={caption} data={launch} stepIndex={stepIndex} />
       </ContentWrapper>
     </HeaderWrapper>
   );
@@ -64,16 +72,8 @@ const ContentWrapper = ({ children }) => (
   </Box>
 );
 
-const ImagesWrapper = ({ data }) => {
+const ImagesWrapper = ({ data, stepIndex }) => {
   const isDesktop = useMediaQuery("(min-width: 1400px)");
-
-  const commonStyling = {
-    position: "absolute",
-    top: 0,
-    opacity: 0,
-  };
-
-  const styles = [{}, { ...commonStyling }, { ...commonStyling }];
 
   return (
     <Box
@@ -85,19 +85,33 @@ const ImagesWrapper = ({ data }) => {
         mt: ["8.54%", "7.82%", 0],
       }}
     >
-      {data.map((item, index) => (
-        <ImageContainer
-          key={`technology-page__images-wrapper__image-${index}`}
-          img={isDesktop ? item.images.portrait : item.images.landscape}
-          alt={item.images.alt}
-          sx={{ "& > div": { width: "100%" }, ...styles[index] }}
-        />
-      ))}
+      <AnimatePresence exitBeforeEnter>
+        <MotionBox
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          key={`technology-page__images-wrapper__image-${stepIndex}`}
+        >
+          <ImageContainer
+            img={
+              isDesktop
+                ? data[stepIndex].images.portrait
+                : data[stepIndex].images.landscape
+            }
+            alt={data[stepIndex].images.alt}
+            sx={{ "& > div": { width: "100%" } }}
+          />
+        </MotionBox>
+      </AnimatePresence>
     </Box>
   );
 };
 
-const NumberButtonsWrapper = ({ data }) => (
+const NumberButtonsWrapper = ({
+  data,
+  stateControl: { stepIndex, setStepIndex },
+}) => (
   <Flex
     className="technology-page__numbers-buttons-wrapper"
     sx={{
@@ -112,8 +126,9 @@ const NumberButtonsWrapper = ({ data }) => (
     {data.map((item, index) => (
       <Button
         key={`technology-page__numbers-buttons-wrapper-${index}`}
-        variant="tertiary"
+        variant={stepIndex !== index ? "tertiary" : "tertiaryActive"}
         sx={{ mx: ["2.14%", "1.05%", 0], my: [0, 0, "20%"] }}
+        onClick={() => setStepIndex(index)}
       >
         {index + 1}
       </Button>
@@ -121,74 +136,50 @@ const NumberButtonsWrapper = ({ data }) => (
   </Flex>
 );
 
-const TextBlocks = ({ caption, data }) => {
-  const commonStyling = {
-    position: "absolute",
-    top: 0,
-    opacity: 0,
-  };
-
-  const styles = [{}, { ...commonStyling }, { ...commonStyling }];
-
-  return (
-    <Box
-      className="technology-page__text-blocks"
-      sx={{
-        alignSelf: [null, null, "center"],
-        gridColumn: [null, null, 3],
-        gridRow: [null, null, 1],
-        textAlign: ["center", "center", "left"],
-        mt: ["6.94%", "5.73%", 0],
-        width: ["100%", "100%", "max-content"],
-      }}
-    >
-      <SubHeadingThree>{caption}</SubHeadingThree>
-      <TextBlocksHeadlines data={data} styles={styles} />
-      <TextBlocksDescriptions data={data} styles={styles} />
-    </Box>
-  );
-};
-
-const TextBlocksHeadlines = ({ data, styles }) => (
-  <Flex
-    className="text-blocks__headlines"
+const TextBlock = ({ caption, data, stepIndex }) => (
+  <Box
+    className="technology-page__text-blocks"
     sx={{
-      alignItems: ["center", "center", "flex-start"],
-      flexDirection: "column",
-      mt: ["2.4%", "2.09%", "2.35%"],
-      position: "relative",
+      alignSelf: [null, null, "center"],
+      gridColumn: [null, null, 3],
+      gridRow: [null, null, 1],
+      textAlign: ["center", "center", "left"],
+      mt: ["6.94%", "5.73%", 0],
+      width: ["100%", "100%", "max-content"],
     }}
   >
-    {data.map((item, index) => (
-      <HeadingThree
-        key={`text-blocks__headline-${index}`}
-        sx={{ ...styles[index] }}
-      >
-        {item.name}
-      </HeadingThree>
-    ))}
-  </Flex>
+    <AnimatePresence exitBeforeEnter>
+      <SubHeadingThree>{caption}</SubHeadingThree>
+      <TextBlockHeadline data={data} stepIndex={stepIndex} />
+      <TextBlockDescription data={data} stepIndex={stepIndex} />
+    </AnimatePresence>
+  </Box>
 );
 
-const TextBlocksDescriptions = ({ data, styles }) => (
-  <Flex
+const TextBlockHeadline = ({ data, stepIndex }) => (
+  <HeadingThree
+    className="text-blocks__headline"
+    // animate={{ opacity: 1 }}
+    // initial={{ opacity: 0 }}
+    // exit={{ opacity: 0 }}
+    // transition={{ duration: 0.2 }}
+    sx={{ mt: ["2.4%", "2.09%", "2.35%"] }}
+  >
+    {data[stepIndex].name}
+  </HeadingThree>
+);
+
+const TextBlockDescription = ({ data, stepIndex }) => (
+  <BodyText
     className="text-blocks__descriptions"
     sx={{
-      alignItems: ["center", "center", "flex-start"],
-      flexDirection: "column",
       mt: ["4.27%", "2.09%", "3.63%"],
-      position: "relative",
+      mx: ["auto", "auto", 0],
+      maxWidth: [300, 442, 444],
     }}
   >
-    {data.map((item, index) => (
-      <BodyText
-        key={`text-blocks__description-${index}`}
-        sx={{ maxWidth: [300, 442, 444], ...styles[index] }}
-      >
-        {item.description}
-      </BodyText>
-    ))}
-  </Flex>
+    {data[stepIndex].description}
+  </BodyText>
 );
 
 const Background = () => (
