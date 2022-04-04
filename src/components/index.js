@@ -4,3 +4,4 @@ export * from "./Vector";
 export * from "./BackgroundImage";
 export * from "./NumberHeadline";
 export * from "./ImageContainer";
+export * from "./Motion";
