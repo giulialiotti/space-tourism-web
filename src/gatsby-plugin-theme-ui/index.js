@@ -1,4 +1,5 @@
 import "./fonts/fontImports";
+import { buttons } from "./buttons";
 
 const theme = {
   breakpoints: [
@@ -43,36 +44,7 @@ const theme = {
     circle: "50%",
   },
   // variants for buttons
-  buttons: {
-    primary: {
-      color: "black",
-      cursor: "pointer",
-      bg: "white",
-      borderRadius: "circle",
-      fontSize: [20, 32, 32],
-      letterSpacing: [1.25, 2, 2],
-      height: [150, 242, 274],
-      width: [150, 242, 274],
-    },
-    secondary: {
-      bg: "transparent",
-      borderRadius: "unset",
-      cursor: "pointer",
-      p: 0,
-    },
-    tertiary: {
-      bg: "transparent",
-      color: "white",
-      cursor: "pointer",
-      border: "1px solid rgb(255, 255, 255, 0.25)",
-      borderRadius: "circle",
-      fontFamily: 'heading',
-      fontSize: [16, 24, 32],
-      p: 0,
-      height: [40, 60, 80],
-      width: [40, 60, 80],
-    },
-  },
+  buttons
 };
 
 export default theme;
