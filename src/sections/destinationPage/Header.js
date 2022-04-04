@@ -12,6 +12,7 @@ import {
   SubHeadingOne,
   SubHeadingTwo,
   BodyText,
+  MotionBox,
 } from "components";
 
 // Assets
@@ -20,11 +21,20 @@ import bgTabletImg from "assets/destination/background-destination-tablet.jpg";
 import bgDesktopImg from "assets/destination/background-destination-desktop.jpg";
 
 export const Header = ({ data: { headline, places, information, cards } }) => {
+  const [stepIndex, setStepIndex] = React.useState(0);
+
+  const stateControl = { stepIndex, setStepIndex };
+
   return (
     // Markup
     <HeaderWrapper>
       <Headline headline={headline} />
-      <Cards cards={cards} info={information} places={places} />
+      <Cards
+        cards={cards}
+        info={information}
+        places={places}
+        stateControl={stateControl}
+      />
       <Background />
     </HeaderWrapper>
   );
@@ -44,9 +54,7 @@ const HeaderWrapper = ({ children }) => (
   </Box>
 );
 
-const Headline = ({ headline }) => (
-  <NumberHeadline headline={headline} />
-);
+const Headline = ({ headline }) => <NumberHeadline headline={headline} />;
 
 const Background = () => (
   <BackgroundImage
@@ -56,7 +64,7 @@ const Background = () => (
   />
 );
 
-const Cards = ({ info, cards, places }) => {
+const Cards = ({ info, cards, places, stateControl }) => {
   return (
     <Flex
       className="destination__cards"
@@ -68,7 +76,12 @@ const Cards = ({ info, cards, places }) => {
       }}
     >
       <CardsImages cards={cards} />
-      <CardsTextBlocks cards={cards} info={info} places={places} />
+      <CardsTextBlocks
+        cards={cards}
+        info={info}
+        places={places}
+        stateControl={stateControl}
+      />
     </Flex>
   );
 };
@@ -98,7 +111,7 @@ const CardsImages = ({ cards }) => (
   </Box>
 );
 
-const CardsTextBlocks = ({ info, cards, places }) => (
+const CardsTextBlocks = ({ info, cards, places, stateControl }) => (
   <Box
     className="destination__cards-text-blocks"
     sx={{
@@ -107,7 +120,7 @@ const CardsTextBlocks = ({ info, cards, places }) => (
       width: [null, null, "42.51%"],
     }}
   >
-    <PlacesButtons places={places} />
+    <PlacesButtons places={places} stateControl={stateControl} />
     <CardTitles cards={cards} />
     <CardsDescriptions cards={cards} />
     <Line />
@@ -115,7 +128,10 @@ const CardsTextBlocks = ({ info, cards, places }) => (
   </Box>
 );
 
-const PlacesButtons = ({ places }) => (
+const PlacesButtons = ({
+  places,
+  stateControl: { stepIndex, setStepIndex },
+}) => (
   <Flex
     className="destinations_cards-buttons"
     sx={{
@@ -125,20 +141,34 @@ const PlacesButtons = ({ places }) => (
       },
     }}
   >
-    {places.map((item) => {
+    {places.map((item, index) => {
       return (
         <Button
           key={item.name}
           variant="secondary"
+          onClick={() => setStepIndex(index)}
           sx={{
             color: "lila",
             fontFamily: "body",
             fontSize: [14, 16, 16],
             letterSpacing: ["2.36px", "2.7px", "2.7px"],
             mx: ["13px", "17.5px", 0],
+            position: "relative",
           }}
         >
           {item.name}
+          {stepIndex === index && (
+            <MotionBox
+              layoutId="button-underline"
+              sx={{
+                bg: "white",
+                height: "3px",
+                position: "absolute",
+                bottom: ["-8px", "-12px", "-12px"],
+                width: "100%",
+              }}
+            />
+          )}
         </Button>
       );
     })}
