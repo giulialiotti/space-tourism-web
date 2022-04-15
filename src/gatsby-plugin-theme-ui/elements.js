@@ -1,11 +1,11 @@
 const buttonDefault = {
   cursor: "pointer",
-  transform: "all 0.3s ease-out",
+  transition: "all 0.3s ease-out",
 };
 
 const linkDefault = {
   cursor: "pointer",
-  transform: "all 0.3s ease-out",
+  transition: "all 0.3s ease-out",
   textDecoration: "none",
 };
 
@@ -43,6 +43,18 @@ export const buttons = {
     bg: "white",
     color: "black",
     border: "none",
+  },
+  dot: {
+    ...buttonDefault,
+    bg: "white",
+    borderRadius: "circle",
+    height: ["10px", "10px", "15px"],
+    mx: ["8px", "8px", "12px"],
+    p: 0,
+    width: ["10px", "10px", "15px"],
+    "&:hover": {
+      opacity: 0.5,
+    },
   },
 };
 
