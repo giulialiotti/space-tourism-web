@@ -162,12 +162,13 @@ const Ovals = () => (
     className="text-blocks__ovals"
     sx={{
       justifyContent: ["center", "center", "flex-start"],
-      mt: [0, "5.21%", '24.64%'],
-      mb: [0, 0, '20.33%'],
+      mt: [0, "5.21%", "24.64%"],
+      mb: [0, 0, "20.33%"],
     }}
   >
-    {Array.from({ length: 4 }).map(() => (
+    {Array.from({ length: 4 }).map((item, index) => (
       <Button
+        key={`oval-${index}`}
         variant="secondary"
         sx={{
           bg: "white",
@@ -249,7 +250,7 @@ const CrewNames = ({ data }) => {
       sx={{
         overflow: "hidden",
         position: "relative",
-        mt: ["2.1%", "1.05%", '3.08%'],
+        mt: ["2.1%", "1.05%", "3.08%"],
       }}
     >
       {data.map((member, index) => {
@@ -293,7 +294,7 @@ const CrewBios = ({ data }) => {
       sx={{
         overflow: "hidden",
         position: "relative",
-        mt: ["4.19%", "2.09%", '5.55%'],
+        mt: ["4.19%", "2.09%", "5.55%"],
       }}
     >
       {data.map((member, index) => {

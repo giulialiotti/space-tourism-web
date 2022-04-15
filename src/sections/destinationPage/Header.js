@@ -275,9 +275,9 @@ const CardsInfo = ({ cards, distance = true }) => (
   <Flex sx={{ mt: ["3.2%", "4.2%", "5.4%"], width: "400%" }}>
     {cards.map((card) => {
       return distance ? (
-        <InfoText text={card.distance} />
+        <InfoText key={card.distance} text={card.distance} />
       ) : (
-        <InfoText text={card.travel} />
+        <InfoText key={card.travel} text={card.travel} />
       );
     })}
   </Flex>
