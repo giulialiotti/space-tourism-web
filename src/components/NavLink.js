@@ -1,7 +1,10 @@
 import React from "react";
-import { motion } from "framer-motion";
 
-import { Link, Box } from "theme-ui";
+// Local Components
+import { MotionLink, MotionBox } from "./Motion";
+
+// Animations
+import { showLineOnHover } from "../sections/animations";
 
 export const NavLink = ({ children, href, sx }) => (
   <MotionLink
@@ -21,9 +24,9 @@ export const NavLink = ({ children, href, sx }) => (
     }}
   >
     {children}
-    <MotionSpan
+    <MotionBox
       as="span"
-      variants={underlineMotion}
+      variants={showLineOnHover}
       className="nav-link__underline"
       sx={{
         display: ["none", "inline-block", "inline-block"],
@@ -36,25 +39,3 @@ export const NavLink = ({ children, href, sx }) => (
     />
   </MotionLink>
 );
-
-// Animated Components
-
-const MotionLink = motion(Link, { forwardMotionProps: true });
-const MotionSpan = motion(Box, { forwardMotionProps: true });
-
-// Animations
-
-const underlineMotion = {
-  default: {
-    width: 0,
-    transition: {
-      duration: 0.3,
-    },
-  },
-  hover: {
-    width: "100%",
-    transition: {
-      duration: 0.3,
-    },
-  },
-};
