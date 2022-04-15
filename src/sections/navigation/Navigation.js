@@ -13,7 +13,7 @@ import { NavLink } from "components";
 import logo from "assets/shared/logo.svg";
 import menu from "assets/shared/icon-hamburger.svg";
 
-export const Navigation = () => {
+export const Navigation = ({ pathname }) => {
   const {
     navigation: { links },
   } = useNavigationData();
@@ -30,7 +30,7 @@ export const Navigation = () => {
       <Logo />
       <Line />
       <HamburguerIcon handleClick={toggleMenu} />
-      <LinksWrapper links={links} isOpen={openMenu} />
+      <LinksWrapper links={links} isOpen={openMenu} pathname={pathname} />
     </NavWrapper>
   );
 };
@@ -79,14 +79,13 @@ const HamburguerIcon = ({ handleClick }) => (
   </Button>
 );
 
-const LinksWrapper = ({ links, isOpen }) => (
+const LinksWrapper = ({ links, isOpen, pathname }) => (
   <Box
     className="navigation__links-wrapper"
     sx={{
       alignItems: [null, "center", "center"],
       display: isOpen ? ["block", "flex", "flex"] : ["none", "flex", "flex"],
       pt: ["31.47%", 0, 0],
-      // pl: ["8.55%", "6.25%", "8.55%"],
       position: ["fixed", "absolute", "absolute"],
       top: 0,
       right: 0,
@@ -95,12 +94,11 @@ const LinksWrapper = ({ links, isOpen }) => (
       zIndex: 1,
     }}
   >
-    <Links links={links} />
-    {/* <LinksBackground /> */}
+    <Links links={links} pathname={pathname} />
   </Box>
 );
 
-const Links = ({ links }) => (
+const Links = ({ links, pathname }) => (
   <Box sx={{ width: "100%" }}>
     <Flex
       as="ul"
@@ -129,7 +127,7 @@ const Links = ({ links }) => (
               zIndex: 2,
             }}
           >
-            <NavLink href={link.to}>
+            <NavLink href={link.to} pathname={pathname}>
               <Number number={link.number} />
               {link.name}
             </NavLink>

@@ -3,11 +3,11 @@ import { Layout } from "layouts/index";
 
 import { useCrewPageData, Header } from "sections/crewPage";
 
-const CrewPage = () => {
+const CrewPage = (props) => {
   const { crew } = useCrewPageData();
 
   return (
-    <Layout>
+    <Layout props={props}>
       <Header data={crew} />
     </Layout>
   );

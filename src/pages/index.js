@@ -3,10 +3,10 @@ import { Layout } from "../layouts/index";
 
 import { useHomePageData, Header } from "sections/homePage";
 
-const IndexPage = () => {
+const IndexPage = (props) => {
   const { home } = useHomePageData();
   return (
-    <Layout>
+    <Layout props={props}>
       <Header data={home} />
     </Layout>
   );

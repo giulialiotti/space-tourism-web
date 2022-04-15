@@ -3,11 +3,11 @@ import { Layout } from "layouts/index";
 
 import { useTechnologyData, Header } from "sections/technologyPage";
 
-const TechnologyPage = () => {
+const TechnologyPage = (props) => {
   const { technology } = useTechnologyData();
 
   return (
-    <Layout>
+    <Layout props={props}>
       <Header data={technology} />
     </Layout>
   );

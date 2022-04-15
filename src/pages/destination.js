@@ -3,10 +3,10 @@ import { Layout } from "layouts/index";
 
 import { useDestinationPageData, Header } from "sections/destinationPage";
 
-const DestinationPage = () => {
+const DestinationPage = (props) => {
   const { destinations } = useDestinationPageData();
   return (
-    <Layout>
+    <Layout props={props}>
       <Header data={destinations} />
     </Layout>
   );
