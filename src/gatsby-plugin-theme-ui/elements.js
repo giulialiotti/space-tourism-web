@@ -30,16 +30,19 @@ export const buttons = {
     p: 0,
   },
   tertiary: {
+    ...tertiaryDefault,
     bg: "transparent",
     color: "white",
     border: "1px solid rgb(255, 255, 255, 0.25)",
-    ...tertiaryDefault,
+    "&:hover": {
+      border: "1px solid white",
+    },
   },
   tertiaryActive: {
+    ...tertiaryDefault,
     bg: "white",
     color: "black",
     border: "none",
-    ...tertiaryDefault,
   },
 };
 
