@@ -1,7 +1,7 @@
 import React from "react";
 
 // External components
-import { Flex, Box, Button } from "theme-ui";
+import { Flex, Box } from "theme-ui";
 
 // Local Components
 import {
@@ -13,12 +13,16 @@ import {
   SubHeadingTwo,
   BodyText,
   MotionBox,
+  MotionButton,
 } from "components";
 
 // Assets
 import bgMobileImg from "assets/destination/background-destination-mobile.jpg";
 import bgTabletImg from "assets/destination/background-destination-tablet.jpg";
 import bgDesktopImg from "assets/destination/background-destination-desktop.jpg";
+
+// Animations
+import { showLineOnHover } from "../animations";
 
 export const Header = ({ data: { headline, places, information, cards } }) => {
   const [stepIndex, setStepIndex] = React.useState(0);
@@ -143,7 +147,7 @@ const PlacesButtons = ({
   >
     {places.map((item, index) => {
       return (
-        <Button
+        <MotionButton
           key={item.name}
           variant="secondary"
           onClick={() => setStepIndex(index)}
@@ -155,6 +159,10 @@ const PlacesButtons = ({
             mx: ["13px", "17.5px", 0],
             position: "relative",
           }}
+          // Animation values
+          initial="initial"
+          animate="initial"
+          whileHover="hover"
         >
           {item.name}
           {stepIndex === index && (
@@ -169,7 +177,19 @@ const PlacesButtons = ({
               }}
             />
           )}
-        </Button>
+          {stepIndex !== index && (
+            <MotionBox
+              variants={showLineOnHover}
+              sx={{
+                bg: "white",
+                height: "3px",
+                opacity: 0.5,
+                position: "absolute",
+                bottom: ["-8px", "-12px", "-12px"],
+              }}
+            />
+          )}
+        </MotionButton>
       );
     })}
   </Flex>
