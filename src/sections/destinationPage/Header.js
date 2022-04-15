@@ -52,6 +52,7 @@ const HeaderWrapper = ({ children }) => (
     sx={{
       pt: ["23.47%", "17.71%", "14.723%"],
       pb: ["15.47%", "8.08%", "7.78%"],
+      overflowX: 'hidden'
     }}
   >
     {children}
@@ -79,7 +80,7 @@ const Cards = ({ info, cards, places, stateControl }) => {
         mr: [0, 0, "11.32%"],
       }}
     >
-      <CardsImages cards={cards} />
+      <CardsImages cards={cards} stepIndex={stateControl.stepIndex} />
       <CardsTextBlocks
         cards={cards}
         info={info}
@@ -90,27 +91,39 @@ const Cards = ({ info, cards, places, stateControl }) => {
   );
 };
 
-const CardsImages = ({ cards }) => (
+const CardsImages = ({ cards, stepIndex }) => (
   <Box
     className="destination__cards-images"
     sx={{
-      overflow: "hidden",
       mt: ["8.55%", "7.82%", "9.27%"],
+      position: "relative",
       width: [null, null, "42.51%"],
     }}
   >
     <Flex sx={{ width: "400%" }}>
-      {cards.map((card) => {
-        return (
-          <Box key={card.images.alt} sx={{ width: "100%" }}>
-            <ImageContainer
-              img={card.images.png}
-              alt={card.images.alt}
-              sx={{ mx: "auto", width: ["45.34%", "39.07%", "100%"] }}
-            />
-          </Box>
-        );
-      })}
+      {cards.map((card, index) => (
+        <MotionBox
+          key={card.images.alt}
+          sx={{ width: "100%" }}
+          initial={{ opacity: 0, x: 0, scale: 0 }}
+          animate={{
+            opacity: index === stepIndex ? 1 : 0,
+            scale: index === stepIndex ? 1 : 0.4,
+            x: `-${stepIndex * 100}%`,
+          }}
+          transition={{
+            type: "tween",
+            ease: "easeInOut",
+            duration: 1,
+          }}
+        >
+          <ImageContainer
+            img={card.images.png}
+            alt={card.images.alt}
+            sx={{ mx: "auto", width: ["45.34%", "39.07%", "100%"] }}
+          />
+        </MotionBox>
+      ))}
     </Flex>
   </Box>
 );
