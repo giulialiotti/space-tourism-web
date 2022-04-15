@@ -19,12 +19,16 @@ import bgTabletImg from "assets/crew/background-crew-tablet.jpg";
 import bgDesktopImg from "assets/crew/background-crew-desktop.jpg";
 
 export const Header = ({ data: { headline, team } }) => {
+  const [cardIndex, setCardIndex] = React.useState(0);
+
+  const stateControl = { cardIndex, setCardIndex };
+
   return (
     // Markup
     <HeaderWrapper>
       <Background />
       <NumberHeadline headline={headline} />
-      <Cards data={team} />
+      <Cards data={team} stateControl={stateControl} />
     </HeaderWrapper>
   );
 };
@@ -54,7 +58,7 @@ const Background = () => (
   />
 );
 
-const Cards = ({ data }) => {
+const Cards = ({ data, stateControl }) => {
   return (
     <Flex
       className="crew__team-cards"
@@ -65,8 +69,8 @@ const Cards = ({ data }) => {
         mr: [0, 0, "9.52%"],
       }}
     >
-      <CardsImages data={data} />
-      <CardsTextBlocks data={data} />
+      <CardsImages data={data} stateControl={stateControl} />
+      <CardsTextBlocks data={data} stateControl={stateControl} />
     </Flex>
   );
 };
@@ -140,7 +144,7 @@ const Line = () => (
   />
 );
 
-const CardsTextBlocks = ({ data }) => (
+const CardsTextBlocks = ({ data, stateControl }) => (
   <Flex
     className="team-cards__text-blocks"
     sx={{
@@ -148,7 +152,7 @@ const CardsTextBlocks = ({ data }) => (
       mt: ["8.55%", "7.82%", 0],
     }}
   >
-    <Ovals />
+    <Ovals stateControl={stateControl} />
     <Box>
       <CrewRoles data={data} />
       <CrewNames data={data} />
@@ -157,7 +161,7 @@ const CardsTextBlocks = ({ data }) => (
   </Flex>
 );
 
-const Ovals = () => (
+const Ovals = ({ stateControl: { cardIndex, setCardIndex } }) => (
   <Flex
     className="text-blocks__ovals"
     sx={{
@@ -169,14 +173,10 @@ const Ovals = () => (
     {Array.from({ length: 4 }).map((item, index) => (
       <Button
         key={`oval-${index}`}
-        variant="secondary"
+        variant="dot"
+        onClick={() => setCardIndex(index)}
         sx={{
-          bg: "white",
-          borderRadius: "circle",
-          height: ["10px", "10px", "15px"],
-          opacity: "0.17",
-          mx: ["8px", "8px", "12px"],
-          width: ["10px", "10px", "15px"],
+          opacity: cardIndex === index ? 1 : 0.17,
         }}
       />
     ))}
