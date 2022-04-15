@@ -3,6 +3,12 @@ const buttonDefault = {
   transform: "all 0.3s ease-out",
 };
 
+const linkDefault = {
+  cursor: "pointer",
+  transform: "all 0.3s ease-out",
+  textDecoration: "none",
+};
+
 const tertiaryDefault = {
   ...buttonDefault,
   borderRadius: "circle",
@@ -16,13 +22,6 @@ const tertiaryDefault = {
 export const buttons = {
   primary: {
     ...buttonDefault,
-    color: "black",
-    bg: "white",
-    borderRadius: "circle",
-    fontSize: [20, 32, 32],
-    letterSpacing: [1.25, 2, 2],
-    height: [150, 242, 274],
-    width: [150, 242, 274],
   },
   secondary: {
     bg: "transparent",
@@ -41,5 +40,21 @@ export const buttons = {
     color: "black",
     border: "none",
     ...tertiaryDefault,
+  },
+};
+
+export const links = {
+  primary: {
+    ...linkDefault,
+    alignItems: "center",
+    color: "black",
+    bg: "white",
+    borderRadius: "circle",
+    display: "flex",
+    fontSize: [20, 32, 32],
+    justifyContent: "center",
+    letterSpacing: [1.25, 2, 2],
+    height: [150, 242, 274],
+    width: [150, 242, 274],
   },
 };

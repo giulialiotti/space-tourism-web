@@ -1,7 +1,7 @@
 import React from "react";
 
 // External components
-import { Box, Button, Flex } from "theme-ui";
+import { Box, Flex, Link } from "theme-ui";
 
 // Local Components
 import { HeadingOne, HeadingFive, BodyText, BackgroundImage } from "components";
@@ -60,7 +60,9 @@ const TextBlock = ({ data: { subHeadline, headline, paragraph } }) => (
 );
 
 const ExploreButton = ({ button }) => (
-  <Button
+  <Link
+    href="/destination"
+    variant="primary"
     sx={{
       alignSelf: ["center", "center", "flex-end"],
       position: "relative",
@@ -85,7 +87,7 @@ const ExploreButton = ({ button }) => (
         width: "100%",
       }}
     />
-  </Button>
+  </Link>
 );
 
 const Background = () => (

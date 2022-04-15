@@ -1,5 +1,5 @@
 import "./fonts/fontImports";
-import { buttons } from "./buttons";
+import { buttons, links } from "./elements";
 import { colors } from "./colors";
 import { breakpoints } from "./breakpoints";
 
@@ -32,8 +32,9 @@ const theme = {
   radii: {
     circle: "50%",
   },
-  // variants for buttons
-  buttons
+  // variants for buttons and links
+  buttons,
+  links
 };
 
 export default theme;
