@@ -9,3 +9,9 @@ export const showLineOnHover = {
     },
   },
 };
+
+export const transitionDefault = {
+  type: "tween",
+  ease: "easeInOut",
+  duration: 1,
+};

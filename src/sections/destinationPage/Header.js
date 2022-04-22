@@ -22,7 +22,7 @@ import bgTabletImg from "assets/destination/background-destination-tablet.jpg";
 import bgDesktopImg from "assets/destination/background-destination-desktop.jpg";
 
 // Animations
-import { showLineOnHover } from "../animations";
+import { showLineOnHover, transitionDefault } from "../animations";
 
 export const Header = ({ data: { headline, places, information, cards } }) => {
   const [stepIndex, setStepIndex] = React.useState(0);
@@ -52,7 +52,7 @@ const HeaderWrapper = ({ children }) => (
     sx={{
       pt: ["23.47%", "17.71%", "14.723%"],
       pb: ["15.47%", "8.08%", "7.78%"],
-      overflowX: 'hidden'
+      overflowX: "hidden",
     }}
   >
     {children}
@@ -105,17 +105,14 @@ const CardsImages = ({ cards, stepIndex }) => (
         <MotionBox
           key={card.images.alt}
           sx={{ width: "100%" }}
+          // Animation values
           initial={{ opacity: 0, x: 0, scale: 0 }}
           animate={{
             opacity: index === stepIndex ? 1 : 0,
             scale: index === stepIndex ? 1 : 0.4,
             x: `-${stepIndex * 100}%`,
           }}
-          transition={{
-            type: "tween",
-            ease: "easeInOut",
-            duration: 1,
-          }}
+          transition={transitionDefault}
         >
           <ImageContainer
             img={card.images.png}
@@ -138,10 +135,10 @@ const CardsTextBlocks = ({ info, cards, places, stateControl }) => (
     }}
   >
     <PlacesButtons places={places} stateControl={stateControl} />
-    <CardTitles cards={cards} />
-    <CardsDescriptions cards={cards} />
+    <CardTitles cards={cards} stepIndex={stateControl.stepIndex} />
+    <CardsDescriptions cards={cards} stepIndex={stateControl.stepIndex} />
     <Line />
-    <InfoWrapper info={info} cards={cards} />
+    <InfoWrapper info={info} cards={cards} stepIndex={stateControl.stepIndex} />
   </Box>
 );
 
@@ -208,14 +205,25 @@ const PlacesButtons = ({
   </Flex>
 );
 
-const CardTitles = ({ cards }) => (
+const CardTitles = ({ cards, stepIndex }) => (
   <Flex
     className="destination__cards-titles"
     sx={{ mt: ["5.34%", "4.17%", "8.32%"], width: "400%" }}
   >
-    {cards.map((card) => {
+    {cards.map((card, index) => {
       return (
-        <HeadingTwo key={card.name} sx={{ width: "100%" }}>
+        <HeadingTwo
+          key={card.name}
+          sx={{ width: "100%" }}
+          // Animation values
+          initial={{ opacity: 0, x: 0, scale: 0 }}
+          animate={{
+            opacity: index === stepIndex ? 1 : 0,
+            scale: index === stepIndex ? 1 : 0.6,
+            x: `-${stepIndex * 100}%`,
+          }}
+          transition={transitionDefault}
+        >
           {card.name}
         </HeadingTwo>
       );
@@ -223,15 +231,23 @@ const CardTitles = ({ cards }) => (
   </Flex>
 );
 
-const CardsDescriptions = ({ cards }) => (
+const CardsDescriptions = ({ cards, stepIndex }) => (
   <Flex
     className="destination__cards-descriptions"
     sx={{ mt: ["0.27%", "1.05%", "3.15%"], width: "400%" }}
   >
-    {cards.map((card) => {
+    {cards.map((card, index) => {
       return (
         <BodyText
           key={card.description}
+          // Animation values
+          initial={{ opacity: 1, x: 0, scale: 1 }}
+          animate={{
+            opacity: index === stepIndex ? 1 : 0,
+            scale: index === stepIndex ? 1 : 0.8,
+            x: `-${stepIndex * 100}%`,
+          }}
+          transition={transitionDefault}
           sx={{ mx: "auto", px: ["2%", "3%", 0], width: "100%" }}
         >
           {card.description}
@@ -253,7 +269,7 @@ const Line = () => (
   />
 );
 
-const InfoWrapper = ({ info: { distance, time }, cards }) => (
+const InfoWrapper = ({ info: { distance, time }, cards, stepIndex }) => (
   <Flex
     sx={{
       flexDirection: ["column", "row", "row"],
@@ -261,10 +277,10 @@ const InfoWrapper = ({ info: { distance, time }, cards }) => (
     }}
   >
     <InfoGroup title={distance} className="destination__cards-distance">
-      <CardsInfo cards={cards} />
+      <CardsInfo cards={cards} stepIndex={stepIndex} />
     </InfoGroup>
     <InfoGroup title={time} sx={{ mt: ["8.54%", 0, 0] }}>
-      <CardsInfo cards={cards} distance={false} />
+      <CardsInfo cards={cards} distance={false} stepIndex={stepIndex} />
     </InfoGroup>
   </Flex>
 );
@@ -284,20 +300,41 @@ const InfoGroup = ({ title, children, sx, ...props }) => (
   </Box>
 );
 
-const CardsInfo = ({ cards, distance = true }) => (
+const CardsInfo = ({ cards, distance = true, stepIndex }) => (
   <Flex sx={{ mt: ["3.2%", "4.2%", "5.4%"], width: "400%" }}>
-    {cards.map((card) => {
+    {cards.map((card, index) => {
       return distance ? (
-        <InfoText key={card.distance} text={card.distance} />
+        <InfoText
+          key={card.distance}
+          text={card.distance}
+          index={index}
+          stepIndex={stepIndex}
+        />
       ) : (
-        <InfoText key={card.travel} text={card.travel} />
+        <InfoText
+          key={card.travel}
+          text={card.travel}
+          index={index}
+          stepIndex={stepIndex}
+        />
       );
     })}
   </Flex>
 );
 
-const InfoText = ({ text }) => (
-  <SubHeadingOne key={text} sx={{ width: "100%" }}>
+const InfoText = ({ text, index, stepIndex }) => (
+  <SubHeadingOne
+    key={text}
+    sx={{ width: "100%" }}
+    // Animation values
+    initial={{ opacity: 1, x: 0, scale: 1 }}
+    animate={{
+      opacity: index === stepIndex ? 1 : 0,
+      scale: index === stepIndex ? 1 : 0.8,
+      x: `-${stepIndex * 100}%`,
+    }}
+    transition={transitionDefault}
+  >
     {text}
   </SubHeadingOne>
 );
