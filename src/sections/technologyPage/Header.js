@@ -22,13 +22,15 @@ import bgMobileImg from "assets/technology/background-technology-mobile.jpg";
 import bgTabletImg from "assets/technology/background-technology-tablet.jpg";
 import bgDesktopImg from "assets/technology/background-technology-desktop.jpg";
 
-// Framer motion
-import { AnimatePresence } from "framer-motion";
+// Animations
+import { revealImage, revealHeadline, revealDescription } from "./animations";
 
 export const Header = ({ data: { headline, caption, launch } }) => {
   const [stepIndex, setStepIndex] = React.useState(0);
 
   const stateControl = { stepIndex, setStepIndex };
+
+  const isDesktop = useMediaQuery("(min-width: 1400px)");
 
   return (
     // Markup
@@ -36,9 +38,18 @@ export const Header = ({ data: { headline, caption, launch } }) => {
       <Background />
       <NumberHeadline headline={headline} />
       <ContentWrapper>
-        <ImagesWrapper data={launch} stepIndex={stepIndex} />
+        <ImagesWrapper
+          data={launch}
+          stepIndex={stepIndex}
+          isDesktop={isDesktop}
+        />
         <NumberButtonsWrapper data={launch} stateControl={stateControl} />
-        <TextBlock caption={caption} data={launch} stepIndex={stepIndex} />
+        <TextBlock
+          caption={caption}
+          data={launch}
+          stepIndex={stepIndex}
+          isDesktop={isDesktop}
+        />
       </ContentWrapper>
     </HeaderWrapper>
   );
@@ -59,7 +70,7 @@ const HeaderWrapper = ({ children }) => (
 );
 
 const ContentWrapper = ({ children }) => (
-  <Box
+  <MotionBox
     className="technology-page__content-wrapper"
     sx={{
       display: ["block", "block", "grid"],
@@ -67,46 +78,39 @@ const ContentWrapper = ({ children }) => (
       pl: [0, 0, "11.53%"],
       mt: [0, 0, "1.81%"],
     }}
+    // Animation values
+    initial="initial"
+    animate="animate"
   >
     {children}
-  </Box>
+  </MotionBox>
 );
 
-const ImagesWrapper = ({ data, stepIndex }) => {
-  const isDesktop = useMediaQuery("(min-width: 1400px)");
-
-  return (
-    <Box
-      className="technology-page__images-wrapper"
-      sx={{
-        gridColumn: [null, null, 5],
-        gridRow: [null, null, 1],
-        position: "relative",
-        mt: ["8.54%", "7.82%", 0],
-      }}
-    >
-      <AnimatePresence exitBeforeEnter>
-        <MotionBox
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          key={`technology-page__images-wrapper__image-${stepIndex}`}
-        >
-          <ImageContainer
-            img={
-              isDesktop
-                ? data[stepIndex].images.portrait
-                : data[stepIndex].images.landscape
-            }
-            alt={data[stepIndex].images.alt}
-            sx={{ "& > div": { width: "100%" } }}
-          />
-        </MotionBox>
-      </AnimatePresence>
-    </Box>
-  );
-};
+const ImagesWrapper = ({ data, stepIndex, isDesktop }) => (
+  <Box
+    className="technology-page__images-wrapper"
+    sx={{
+      gridColumn: [null, null, 5],
+      gridRow: [null, null, 1],
+      position: "relative",
+      mt: ["8.54%", "7.82%", 0],
+      overflow: "hidden",
+    }}
+  >
+    <ImageContainer
+      img={
+        isDesktop
+          ? data[stepIndex].images.portrait
+          : data[stepIndex].images.landscape
+      }
+      alt={data[stepIndex].images.alt}
+      sx={{ "& > div": { width: "100%" } }}
+      // Animation values
+      variants={revealImage}
+      key={`technology-page__images-wrapper__image-${stepIndex}`}
+    />
+  </Box>
+);
 
 const NumberButtonsWrapper = ({
   data,
@@ -136,7 +140,7 @@ const NumberButtonsWrapper = ({
   </Flex>
 );
 
-const TextBlock = ({ caption, data, stepIndex }) => (
+const TextBlock = ({ caption, data, stepIndex, isDesktop }) => (
   <Box
     className="technology-page__text-blocks"
     sx={{
@@ -148,35 +152,45 @@ const TextBlock = ({ caption, data, stepIndex }) => (
       width: ["100%", "100%", "max-content"],
     }}
   >
-    <AnimatePresence exitBeforeEnter>
-      <SubHeadingThree>{caption}</SubHeadingThree>
-      <TextBlockHeadline data={data} stepIndex={stepIndex} />
-      <TextBlockDescription data={data} stepIndex={stepIndex} />
-    </AnimatePresence>
+    <SubHeadingThree>{caption}</SubHeadingThree>
+    <TextBlockHeadline
+      data={data}
+      stepIndex={stepIndex}
+      isDesktop={isDesktop}
+    />
+    <TextBlockDescription
+      data={data}
+      stepIndex={stepIndex}
+      isDesktop={isDesktop}
+    />
   </Box>
 );
 
-const TextBlockHeadline = ({ data, stepIndex }) => (
+const TextBlockHeadline = ({ data, stepIndex, isDesktop }) => (
   <HeadingThree
     className="text-blocks__headline"
-    // animate={{ opacity: 1 }}
-    // initial={{ opacity: 0 }}
-    // exit={{ opacity: 0 }}
-    // transition={{ duration: 0.2 }}
+    key={`text-blocks__headline-${stepIndex}`}
     sx={{ mt: ["2.4%", "2.09%", "2.35%"] }}
+    // Animation values
+    variants={revealHeadline}
+    style={{ originX: isDesktop ? 0 : 0.5 }}
   >
     {data[stepIndex].name}
   </HeadingThree>
 );
 
-const TextBlockDescription = ({ data, stepIndex }) => (
+const TextBlockDescription = ({ data, stepIndex, isDesktop }) => (
   <BodyText
     className="text-blocks__descriptions"
+    key={`text-blocks__descriptions-${stepIndex}`}
     sx={{
       mt: ["4.27%", "2.09%", "3.63%"],
       mx: ["auto", "auto", 0],
       maxWidth: [300, 442, 444],
     }}
+    // Animation values
+    style={{ originX: isDesktop ? 0 : 0.5 }}
+    variants={revealDescription}
   >
     {data[stepIndex].description}
   </BodyText>
