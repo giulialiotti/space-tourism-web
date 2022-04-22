@@ -3,7 +3,7 @@ import React from "react";
 // import { Heading, Paragraph } from "theme-ui";
 import { MotionHeading, MotionParagraph } from "./Motion";
 
-export const HeadingOne = ({ children, sx }) => (
+export const HeadingOne = ({ children, sx, ...props }) => (
   <MotionHeading
     as="h1"
     sx={{
@@ -13,12 +13,13 @@ export const HeadingOne = ({ children, sx }) => (
       textAlign: ["center", "center", "left"],
       ...sx,
     }}
+    {...props}
   >
     {children}
   </MotionHeading>
 );
 
-export const HeadingTwo = ({ children, sx }) => (
+export const HeadingTwo = ({ children, sx , ...props }) => (
   <MotionHeading
     as="h2"
     sx={{
@@ -28,6 +29,7 @@ export const HeadingTwo = ({ children, sx }) => (
       textTransform: "uppercase",
       ...sx,
     }}
+    {...props}
   >
     {children}
   </MotionHeading>
@@ -49,7 +51,7 @@ export const HeadingThree = ({ children, sx, ...props }) => (
   </MotionHeading>
 );
 
-export const HeadingFour = ({ children, sx }) => (
+export const HeadingFour = ({ children, sx, ...props }) => (
   <MotionHeading
     as="h4"
     sx={{
@@ -60,12 +62,13 @@ export const HeadingFour = ({ children, sx }) => (
       textTransform: "uppercase",
       ...sx,
     }}
+    {...props}
   >
     {children}
   </MotionHeading>
 );
 
-export const HeadingFive = ({ children, sx }) => (
+export const HeadingFive = ({ children, sx, ...props }) => (
   <MotionHeading
     as="h5"
     sx={{
@@ -77,12 +80,13 @@ export const HeadingFive = ({ children, sx }) => (
       textTransform: "uppercase",
       ...sx,
     }}
+    {...props}
   >
     {children}
   </MotionHeading>
 );
 
-export const SubHeadingOne = ({ children, sx }) => (
+export const SubHeadingOne = ({ children, sx, ...props  }) => (
   <MotionParagraph
     sx={{
       color: "white",
@@ -91,12 +95,13 @@ export const SubHeadingOne = ({ children, sx }) => (
       textTransform: "uppercase",
       ...sx,
     }}
+    {...props}
   >
     {children}
   </MotionParagraph>
 );
 
-export const SubHeadingTwo = ({ children, sx }) => (
+export const SubHeadingTwo = ({ children, sx, ...props }) => (
   <MotionParagraph
     sx={{
       color: "lila",
@@ -105,12 +110,13 @@ export const SubHeadingTwo = ({ children, sx }) => (
       textTransform: "uppercase",
       ...sx,
     }}
+    {...props}
   >
     {children}
   </MotionParagraph>
 );
 
-export const SubHeadingThree = ({ children, sx }) => (
+export const SubHeadingThree = ({ children, sx, ...props }) => (
   <MotionParagraph
     sx={{
       color: "lila",
@@ -120,6 +126,7 @@ export const SubHeadingThree = ({ children, sx }) => (
       textTransform: "uppercase",
       ...sx,
     }}
+    {...props}
   >
     {children}
   </MotionParagraph>
