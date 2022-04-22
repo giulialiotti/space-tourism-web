@@ -110,6 +110,8 @@ const CardsImages = ({ data, cardIndex }) => {
     <Box
       className="team-cards__images"
       sx={{
+        alignContent: 'end',
+        display: 'grid',
         position: "relative",
         mt: ["8.55%", "5.21%", "-5%"],
       }}
