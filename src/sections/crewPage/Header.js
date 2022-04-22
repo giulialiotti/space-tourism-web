@@ -11,12 +11,16 @@ import {
   HeadingFour,
   HeadingThree,
   BodyText,
+  MotionBox,
 } from "components";
 
 // Assets
 import bgMobileImg from "assets/crew/background-crew-mobile.jpg";
 import bgTabletImg from "assets/crew/background-crew-tablet.jpg";
 import bgDesktopImg from "assets/crew/background-crew-desktop.jpg";
+
+// Animations
+import { transitionDefault } from "../animations";
 
 export const Header = ({ data: { headline, team } }) => {
   const [cardIndex, setCardIndex] = React.useState(0);
@@ -69,18 +73,19 @@ const Cards = ({ data, stateControl }) => {
         mr: [0, 0, "9.52%"],
       }}
     >
-      <CardsImages data={data} stateControl={stateControl} />
+      <CardsImages data={data} cardIndex={stateControl.cardIndex} />
       <CardsTextBlocks data={data} stateControl={stateControl} />
     </Flex>
   );
 };
 
-const CardsImages = ({ data }) => {
+const CardsImages = ({ data, cardIndex }) => {
   const commonStyles = {
     position: "absolute",
-    top: "100%",
-    left: "50%",
-    transform: "translate(-50%)",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    mx: "auto",
   };
 
   const styles = [
@@ -106,23 +111,31 @@ const CardsImages = ({ data }) => {
       className="team-cards__images"
       sx={{
         position: "relative",
-        overflow: "hidden",
         mt: ["8.55%", "5.21%", "-5%"],
       }}
     >
-      <Box sx={{ mb: [0, "-5.21%", "-3.53%"] }}>
+      <Box
+        className="team-cards__images-wrapper"
+        sx={{ position: "relative", mb: [0, "-5.21%", "-3.53%"] }}
+      >
         {data.map((member, index) => {
           return (
-            <Box
+            <MotionBox
               key={`crew__cards-images-${index}`}
               sx={{ mx: "auto", ...styles[index] }}
+              // Animation values
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: index === cardIndex ? 1 : 0,
+              }}
+              transition={transitionDefault}
             >
               <ImageContainer
                 img={member.images.png}
                 alt={member.images.alt}
                 imgStyle={{ objectFit: "contain" }}
               />
-            </Box>
+            </MotionBox>
           );
         })}
       </Box>
@@ -139,7 +152,9 @@ const Line = () => (
       display: ["block", "none", "none"],
       height: 1,
       mx: "auto",
+      position: "relative",
       width: "87.2%",
+      zIndex: 2,
     }}
   />
 );
@@ -154,9 +169,9 @@ const CardsTextBlocks = ({ data, stateControl }) => (
   >
     <Ovals stateControl={stateControl} />
     <Box>
-      <CrewRoles data={data} />
-      <CrewNames data={data} />
-      <CrewBios data={data} />
+      <CrewRoles data={data} cardIndex={stateControl.cardIndex} />
+      <CrewNames data={data} cardIndex={stateControl.cardIndex} />
+      <CrewBios data={data} cardIndex={stateControl.cardIndex} />
     </Box>
   </Flex>
 );
@@ -183,12 +198,12 @@ const Ovals = ({ stateControl: { cardIndex, setCardIndex } }) => (
   </Flex>
 );
 
-const CrewRoles = ({ data }) => {
+const CrewRoles = ({ data, cardIndex }) => {
   const commonStyles = {
     position: "absolute",
-    top: "100%",
-    left: "50%",
-    transform: "translate(-50%)",
+    bottom: 0,
+    left: ["50%", "50%", 0],
+    transform: ["translateX(-50%)", "translateX(-50%)", "unset"],
   };
 
   const styles = [
@@ -214,6 +229,12 @@ const CrewRoles = ({ data }) => {
           <HeadingFour
             key={`crew-roles__item-${index}`}
             sx={{ ...styles[index] }}
+            // Animation values
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: index === cardIndex ? 1 : 0,
+            }}
+            transition={transitionDefault}
           >
             {member.role}
           </HeadingFour>
@@ -223,12 +244,12 @@ const CrewRoles = ({ data }) => {
   );
 };
 
-const CrewNames = ({ data }) => {
+const CrewNames = ({ data, cardIndex }) => {
   const commonStyles = {
     position: "absolute",
-    top: "100%",
-    left: "50%",
-    transform: "translate(-50%)",
+    bottom: 0,
+    left: ["50%", "50%", 0],
+    transform: ["translateX(-50%)", "translateX(-50%)", "unset"],
   };
 
   const styles = [
@@ -258,6 +279,12 @@ const CrewNames = ({ data }) => {
           <HeadingThree
             key={`crew-name__item-${index}`}
             sx={{ ...styles[index] }}
+            // Animation values
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: index === cardIndex ? 1 : 0,
+            }}
+            transition={transitionDefault}
           >
             {member.name}
           </HeadingThree>
@@ -267,12 +294,12 @@ const CrewNames = ({ data }) => {
   );
 };
 
-const CrewBios = ({ data }) => {
+const CrewBios = ({ data, cardIndex }) => {
   const commonStyles = {
     position: "absolute",
-    top: "100%",
-    left: "50%",
-    transform: "translate(-50%)",
+    top: 0,
+    left: 0,
+    right: 0,
   };
 
   const styles = [
@@ -292,7 +319,6 @@ const CrewBios = ({ data }) => {
     <Box
       className="text-blocks__crew-bios"
       sx={{
-        overflow: "hidden",
         position: "relative",
         mt: ["4.19%", "2.09%", "5.55%"],
       }}
@@ -306,6 +332,12 @@ const CrewBios = ({ data }) => {
               maxWidth: [327, 458, 444],
               ...styles[index],
             }}
+            // Animation values
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: index === cardIndex ? 1 : 0,
+            }}
+            transition={transitionDefault}
           >
             {member.bio}
           </BodyText>
