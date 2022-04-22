@@ -12,8 +12,6 @@ import { showLineOnHover } from "../sections/animations";
 export const NavLink = ({ children, href, pathname, sx }) => {
   const isBiggerDevice = useMediaQuery("(min-width: 750px)");
 
-  console.log(pathname);
-
   return (
     <MotionLink
       href={href}
