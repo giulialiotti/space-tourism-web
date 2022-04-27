@@ -3,8 +3,7 @@ import { Box } from "theme-ui";
 
 import { Navigation } from "sections/navigation/Navigation";
 
-export const Layout = ({ children, props }) => {
-  const { location } = props;
+const Layout = ({ children, location }) => {
   return (
     <>
       <Navigation pathname={location.pathname} />
@@ -15,3 +14,5 @@ export const Layout = ({ children, props }) => {
     </>
   );
 };
+
+export default Layout;

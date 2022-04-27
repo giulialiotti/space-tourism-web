@@ -7,7 +7,7 @@ module.exports = {
     "gatsby-plugin-theme-ui",
     "gatsby-plugin-image",
     {
-      resolve: 'gatsby-plugin-sharp',
+      resolve: "gatsby-plugin-sharp",
       options: {
         defaults: {
           placeholder: `none`,
@@ -30,6 +30,12 @@ module.exports = {
         path: "./src/assets/",
       },
       __key: "images",
-    }
+    },
+    {
+      resolve: "gatsby-plugin-layout",
+      options: {
+        component: require.resolve("./src/layouts/index.js"),
+      },
+    },
   ],
 };
