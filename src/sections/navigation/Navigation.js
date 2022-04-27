@@ -40,7 +40,7 @@ export const Navigation = ({ pathname }) => {
   // Close navigation overlay if screen is bigger than tablet
   React.useEffect(() => {
     if (isBiggerDevice && openMenu) {
-      toggleMenu();
+      setOpenMenu(false);
     }
   }, [isBiggerDevice, openMenu]);
 
