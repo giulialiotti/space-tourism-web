@@ -2,35 +2,67 @@ import React from "react";
 
 // External components
 import { Box, Button, Flex, Image, Link } from "theme-ui";
+import { AnimatePresence } from "framer-motion";
 
 // Data
 import { useNavigationData } from "./useNavigationData";
 
 // Components
 import { NavLink } from "components";
+import { MotionBox, MotionFlex } from "components";
+
+// Hooks
+import { useMediaQuery } from "hooks/useMediaQuery";
 
 // Assets
 import logo from "assets/shared/logo.svg";
 import menu from "assets/shared/icon-hamburger.svg";
+import close from "assets/shared/icon-close.svg";
+
+// Animations
+import { transitionDefault } from "../animations";
+import { staggerVariant, revealLinks } from "./animations";
 
 export const Navigation = ({ pathname }) => {
   const {
     navigation: { links },
   } = useNavigationData();
 
+  const isBiggerDevice = useMediaQuery("(min-width: 750px)");
+
+  // Navigation overlay handlers
   const [openMenu, setOpenMenu] = React.useState(false);
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
   };
 
+  // Close navigation overlay if screen is bigger than tablet
+  React.useEffect(() => {
+    if (isBiggerDevice && openMenu) {
+      toggleMenu();
+    }
+  }, [isBiggerDevice, openMenu]);
+
   return (
     // Markup
     <NavWrapper>
       <Logo />
       <Line />
-      <HamburguerIcon handleClick={toggleMenu} />
-      <LinksWrapper links={links} isOpen={openMenu} pathname={pathname} />
+      <HamburguerIcon handleClick={toggleMenu} isOpen={openMenu} />
+      {isBiggerDevice && (
+        <LinksWrapper
+          links={links}
+          pathname={pathname}
+          isBiggerDevice={isBiggerDevice}
+        />
+      )}
+      <NavigationOverlay
+        links={links}
+        isOpen={openMenu}
+        pathname={pathname}
+        isBiggerDevice={isBiggerDevice}
+      />
     </NavWrapper>
   );
 };
@@ -64,7 +96,7 @@ const Logo = () => (
   </Link>
 );
 
-const HamburguerIcon = ({ handleClick }) => (
+const HamburguerIcon = ({ handleClick, isOpen }) => (
   <Button
     variant="secondary"
     onClick={handleClick}
@@ -75,16 +107,20 @@ const HamburguerIcon = ({ handleClick }) => (
       zIndex: 2,
     }}
   >
-    <Image src={menu} alt="Hamburguer menu icon" sx={{ width: "100%" }} />
+    <Image
+      src={!isOpen ? menu : close}
+      alt={!isOpen ? "Hamburguer menu icon" : "Close icon"}
+      sx={{ width: "100%" }}
+    />
   </Button>
 );
 
-const LinksWrapper = ({ links, isOpen, pathname }) => (
-  <Box
+const LinksWrapper = ({ links, pathname, isBiggerDevice, ...props }) => (
+  <MotionBox
     className="navigation__links-wrapper"
     sx={{
       alignItems: [null, "center", "center"],
-      display: isOpen ? ["block", "flex", "flex"] : ["none", "flex", "flex"],
+      display: ["block", "flex", "flex"],
       pt: ["31.47%", 0, 0],
       position: ["fixed", "absolute", "absolute"],
       top: 0,
@@ -93,15 +129,38 @@ const LinksWrapper = ({ links, isOpen, pathname }) => (
       width: ["68%", "64.85%", "57.64%"],
       zIndex: 1,
     }}
+    {...props}
   >
-    <Links links={links} pathname={pathname} />
-  </Box>
+    <Links links={links} pathname={pathname} isBiggerDevice={isBiggerDevice} />
+  </MotionBox>
 );
 
-const Links = ({ links, pathname }) => (
+const NavigationOverlay = ({ links, isOpen, pathname, isBiggerDevice }) => (
+  <AnimatePresence>
+    {isOpen && (
+      <LinksWrapper
+        links={links}
+        pathname={pathname}
+        isBiggerDevice={isBiggerDevice}
+        // Animation values
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
+        transition={transitionDefault}
+      />
+    )}
+  </AnimatePresence>
+);
+
+const Links = ({ links, pathname, isBiggerDevice }) => (
   <Box sx={{ width: "100%" }}>
-    <Flex
+    <MotionFlex
       as="ul"
+      // Animation values
+      initial="closed"
+      animate="open"
+      exit="closed"
+      variants={staggerVariant}
       sx={{
         flexDirection: ["column", "row", "row"],
         pl: ["8.55%", "9.7%", "8.55%"],
@@ -115,9 +174,11 @@ const Links = ({ links, pathname }) => (
     >
       {links.map((link) => {
         return (
-          <Box
+          <MotionBox
             as="li"
             key={link.name}
+            // Animation values
+            variants={!isBiggerDevice ? revealLinks : null}
             sx={{
               overflow: "hidden",
               position: "relative",
@@ -131,10 +192,10 @@ const Links = ({ links, pathname }) => (
               <Number number={link.number} />
               {link.name}
             </NavLink>
-          </Box>
+          </MotionBox>
         );
       })}
-    </Flex>
+    </MotionFlex>
 
     <LinksBackground />
   </Box>
