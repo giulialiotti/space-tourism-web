@@ -241,7 +241,7 @@ const CardsDescriptions = ({ cards, stepIndex }) => (
         <BodyText
           key={card.description}
           // Animation values
-          initial={{ opacity: 1, x: 0, scale: 1 }}
+          initial={{ opacity: 0, x: 0, scale: 0.8 }}
           animate={{
             opacity: index === stepIndex ? 1 : 0,
             scale: index === stepIndex ? 1 : 0.8,
@@ -327,7 +327,7 @@ const InfoText = ({ text, index, stepIndex }) => (
     key={text}
     sx={{ width: "100%" }}
     // Animation values
-    initial={{ opacity: 1, x: 0, scale: 1 }}
+    initial={{ opacity: 0, x: 0, scale: 0.8 }}
     animate={{
       opacity: index === stepIndex ? 1 : 0,
       scale: index === stepIndex ? 1 : 0.8,
