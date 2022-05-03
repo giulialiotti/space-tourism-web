@@ -1,6 +1,5 @@
 import React from "react";
 
-// import { Heading, Paragraph } from "theme-ui";
 import { MotionHeading, MotionParagraph } from "./Motion";
 
 export const HeadingOne = ({ children, sx, ...props }) => (
