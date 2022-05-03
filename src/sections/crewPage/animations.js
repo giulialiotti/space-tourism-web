@@ -1,4 +1,4 @@
-import { transitionDefault } from "../animations";
+import { transitionDefault, exitDefault } from "../animations";
 
 // Framer Motion animation variants
 
@@ -12,6 +12,7 @@ export const revealRoleAndName = {
       ...transitionDefault,
     },
   },
+  exit: exitDefault,
 };
 
 export const revealBio = {
@@ -24,4 +25,5 @@ export const revealBio = {
       ...transitionDefault,
     },
   },
+  exit: exitDefault,
 };

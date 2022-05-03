@@ -24,7 +24,7 @@ import bgTabletImg from "assets/crew/background-crew-tablet.jpg";
 import bgDesktopImg from "assets/crew/background-crew-desktop.jpg";
 
 // Animations
-import { transitionDefault } from "../animations";
+import { transitionDefault, exitDefault } from "../animations";
 import { revealRoleAndName, revealBio } from "./animations";
 
 export const Header = ({ data: { headline, team } }) => {
@@ -138,7 +138,7 @@ const CardImage = ({ data, cardIndex }) => {
           key={`crew__cards-images-${cardIndex}`}
           initial={{ opacity: 0, y: "50%", scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: "50%", scale: 0.9 }}
+          exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.6 } }}
           transition={transitionDefault}
         />
       </AnimatePresence>
@@ -230,44 +230,59 @@ const Ovals = ({ stateControl: { cardIndex, setCardIndex } }) => (
 );
 
 const CrewRole = ({ data, cardIndex, isDesktop }) => (
-  <HeadingFour
-    className="text-block__crew-role"
-    sx={{ mt: ["8.38%", 0, 0] }}
-    // Animation values
-    key={`crew-roles__item-${cardIndex}`}
-    style={{ originX: isDesktop ? 0 : 0.5 }}
-    variants={revealRoleAndName}
-  >
-    {data[cardIndex].role}
-  </HeadingFour>
+  <AnimatePresence exitBeforeEnter>
+    <HeadingFour
+      className="text-block__crew-role"
+      sx={{ mt: ["8.38%", 0, 0] }}
+      // Animation values
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      key={`crew-roles__item-${cardIndex}`}
+      style={{ originX: isDesktop ? 0 : 0.5 }}
+      variants={revealRoleAndName}
+    >
+      {data[cardIndex].role}
+    </HeadingFour>
+  </AnimatePresence>
 );
 
 const CrewName = ({ data, cardIndex, isDesktop }) => (
-  <HeadingThree
-    key={`crew-name__item-${cardIndex}`}
-    className="text-block__crew-name"
-    sx={{ mt: ["2.1%", "1.05%", "3.08%"] }}
-    // Animation values
-    style={{ originX: isDesktop ? 0 : 0.5 }}
-    variants={revealRoleAndName}
-  >
-    {data[cardIndex].name}
-  </HeadingThree>
+  <AnimatePresence exitBeforeEnter>
+    <HeadingThree
+      key={`crew-name__item-${cardIndex}`}
+      className="text-block__crew-name"
+      sx={{ mt: ["2.1%", "1.05%", "3.08%"] }}
+      // Animation values
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      style={{ originX: isDesktop ? 0 : 0.5 }}
+      variants={revealRoleAndName}
+    >
+      {data[cardIndex].name}
+    </HeadingThree>
+  </AnimatePresence>
 );
 
 const CrewBio = ({ data, cardIndex, isDesktop }) => (
-  <BodyText
-    key={`crew-bio__item-${cardIndex}`}
-    className="text-block__crew-bio"
-    sx={{
-      mt: ["4.19%", "2.09%", "5.55%"],
-      mx: ["auto", "auto", 0],
-      maxWidth: [327, 458, 444],
-    }}
-    // Animation values
-    variants={revealBio}
-    style={{ originX: isDesktop ? 0 : 0.5 }}
-  >
-    {data[cardIndex].bio}
-  </BodyText>
+  <AnimatePresence exitBeforeEnter>
+    <BodyText
+      key={`crew-bio__item-${cardIndex}`}
+      className="text-block__crew-bio"
+      sx={{
+        mt: ["4.19%", "2.09%", "5.55%"],
+        mx: ["auto", "auto", 0],
+        maxWidth: [327, 458, 444],
+      }}
+      // Animation values
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={revealBio}
+      style={{ originX: isDesktop ? 0 : 0.5 }}
+    >
+      {data[cardIndex].bio}
+    </BodyText>
+  </AnimatePresence>
 );
