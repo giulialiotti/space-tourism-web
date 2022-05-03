@@ -1,15 +1,14 @@
 import React from "react";
 
 // External components
-import { Box, Button, Flex, Image, Link } from "theme-ui";
+import { Box, Button, Flex, Image } from "theme-ui";
 import { AnimatePresence } from "framer-motion";
 
 // Data
 import { useNavigationData } from "./useNavigationData";
 
 // Components
-import { NavLink } from "components";
-import { MotionBox, MotionFlex } from "components";
+import { NavLink, MotionBox, MotionFlex, TransitionLink } from "components";
 
 // Hooks
 import { useMediaQuery } from "hooks/useMediaQuery";
@@ -88,12 +87,12 @@ const NavWrapper = ({ children }) => (
 );
 
 const Logo = () => (
-  <Link
-    href="/"
+  <TransitionLink
+    to="/"
     sx={{ cursor: "pointer", width: ["12.24%", "6.96%", "3.61%"] }}
   >
     <Image src={logo} alt="Space tourism logo" sx={{ width: "100%" }} />
-  </Link>
+  </TransitionLink>
 );
 
 const HamburguerIcon = ({ handleClick, isOpen }) => (

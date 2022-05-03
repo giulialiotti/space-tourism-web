@@ -2,7 +2,8 @@
 import { jsx } from "theme-ui";
 
 // Local Components
-import { MotionLink, MotionBox } from "./Motion";
+import { MotionBox } from "./Motion";
+import { TransitionLink } from "./TransitionLink";
 
 // Hooks
 import { useMediaQuery } from "hooks/useMediaQuery";
@@ -11,10 +12,7 @@ export const NavLink = ({ children, href, pathname, sx, ...props }) => {
   const isBiggerDevice = useMediaQuery("(min-width: 750px)");
 
   return (
-    <MotionLink
-      bg="#0B0D17"
-      cover
-      direction="left"
+    <TransitionLink
       to={href}
       sx={{
         display: "flex",
@@ -53,7 +51,7 @@ export const NavLink = ({ children, href, pathname, sx, ...props }) => {
           }}
         />
       )}
-    </MotionLink>
+    </TransitionLink>
   );
 };
 

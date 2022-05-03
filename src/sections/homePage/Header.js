@@ -12,6 +12,7 @@ import {
   BodyText,
   BackgroundImage,
   MotionBox,
+  TransitionLink,
 } from "components";
 
 // Assets
@@ -105,10 +106,7 @@ const ExploreButton = ({ button }) => (
       mt: "25%",
     }}
   >
-    <AniLink
-      bg="#0B0D17"
-      cover
-      direction="left"
+    <TransitionLink
       to="/destination"
       sx={{
         position: "relative",
@@ -133,7 +131,7 @@ const ExploreButton = ({ button }) => (
           width: "100%",
         }}
       />
-    </AniLink>
+    </TransitionLink>
   </MotionBox>
 );
 
