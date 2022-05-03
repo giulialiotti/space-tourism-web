@@ -8,7 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import { useNavigationData } from "./useNavigationData";
 
 // Components
-import { NavLink } from "components";
+import { NavLink, Underline } from "components";
 import { MotionBox, MotionFlex } from "components";
 
 // Hooks
@@ -20,7 +20,7 @@ import menu from "assets/shared/icon-hamburger.svg";
 import close from "assets/shared/icon-close.svg";
 
 // Animations
-import { transitionDefault } from "../animations";
+import { transitionDefault, showLineOnHover } from "../animations";
 import { staggerVariant, revealLinks } from "./animations";
 
 export const Navigation = ({ pathname }) => {
@@ -179,6 +179,9 @@ const Links = ({ links, pathname, isBiggerDevice }) => (
             key={link.name}
             // Animation values
             variants={!isBiggerDevice ? revealLinks : null}
+            initial="default"
+            whileHover="hover"
+            animate="default"
             sx={{
               overflow: "hidden",
               position: "relative",
@@ -191,6 +194,9 @@ const Links = ({ links, pathname, isBiggerDevice }) => (
             <NavLink href={link.to} pathname={pathname}>
               <Number number={link.number} />
               {link.name}
+              {isBiggerDevice && (
+                <Underline variants={showLineOnHover} sx={{ opacity: 0.5 }} />
+              )}
             </NavLink>
           </MotionBox>
         );

@@ -1,7 +1,9 @@
-import React from "react";
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 
 // External components
-import { Box, Flex, Link } from "theme-ui";
+import { Box, Flex } from "theme-ui";
+import AniLink from "gatsby-plugin-transition-link/AniLink";
 
 // Local Components
 import { HeadingOne, HeadingFive, BodyText, BackgroundImage } from "components";
@@ -60,13 +62,16 @@ const TextBlock = ({ data: { subHeadline, headline, paragraph } }) => (
 );
 
 const ExploreButton = ({ button }) => (
-  <Link
-    href="/destination"
-    variant="primary"
+  <AniLink
+    bg="#0B0D17"
+    cover
+    direction="left"
+    to="/destination"
     sx={{
       alignSelf: ["center", "center", "flex-end"],
       position: "relative",
       mt: "25%",
+      variant: "links.primary",
       "&:hover > span": {
         transform: ["scale(1.3)", "scale(1.5)", "scale(1.6)"],
       },
@@ -87,7 +92,7 @@ const ExploreButton = ({ button }) => (
         width: "100%",
       }}
     />
-  </Link>
+  </AniLink>
 );
 
 const Background = () => (

@@ -1,51 +1,39 @@
-import React from "react";
+/** @jsx jsx */
+import { jsx } from "theme-ui";
 
 // Local Components
 import { MotionLink, MotionBox } from "./Motion";
 
-// Hooks
-import { useMediaQuery } from "hooks/useMediaQuery";
+export const NavLink = ({ children, href, pathname, sx }) => (
+  <MotionLink
+    bg="#0B0D17"
+    cover
+    direction="left"
+    to={href}
+    sx={{
+      display: "flex",
+      color: "white",
+      fontFamily: "body",
+      fontSize: [16, 14, 16],
+      letterSpacing: 1,
+      textTransform: "uppercase",
+      textDecoration: "none",
+      ...sx,
+    }}
+  >
+    {children}
+    {pathname === href && (
+      <Underline
+        sx={{
+          display: ["none", "inline-block", "inline-block"],
+          width: "100%",
+        }}
+      />
+    )}
+  </MotionLink>
+);
 
-// Animations
-import { showLineOnHover } from "../sections/animations";
-
-export const NavLink = ({ children, href, pathname, sx }) => {
-  const isBiggerDevice = useMediaQuery("(min-width: 750px)");
-
-  return (
-    <MotionLink
-      href={href}
-      initial="default"
-      whileHover="hover"
-      animate="default"
-      sx={{
-        display: "flex",
-        color: "white",
-        fontFamily: "body",
-        fontSize: [16, 14, 16],
-        letterSpacing: 1,
-        textTransform: "uppercase",
-        textDecoration: "none",
-        ...sx,
-      }}
-    >
-      {children}
-      {isBiggerDevice && (
-        <Underline variants={showLineOnHover} sx={{ opacity: 0.5 }} />
-      )}
-      {pathname === href && (
-        <Underline
-          sx={{
-            display: ["none", "inline-block", "inline-block"],
-            width: "100%",
-          }}
-        />
-      )}
-    </MotionLink>
-  );
-};
-
-const Underline = ({ sx, ...props }) => (
+export const Underline = ({ sx, ...props }) => (
   <MotionBox
     as="span"
     className="nav-link__underline"
