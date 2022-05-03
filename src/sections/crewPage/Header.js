@@ -24,7 +24,7 @@ import bgTabletImg from "assets/crew/background-crew-tablet.jpg";
 import bgDesktopImg from "assets/crew/background-crew-desktop.jpg";
 
 // Animations
-import { transitionDefault, exitDefault } from "../animations";
+import { transitionDefault } from "../animations";
 import { revealRoleAndName, revealBio } from "./animations";
 
 export const Header = ({ data: { headline, team } }) => {
@@ -136,9 +136,14 @@ const CardImage = ({ data, cardIndex }) => {
           sx={{ ...styles[cardIndex] }}
           // Animation values
           key={`crew__cards-images-${cardIndex}`}
-          initial={{ opacity: 0, y: "50%", scale: 0.9 }}
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.6 } }}
+          exit={{
+            opacity: 0,
+            y: 20,
+            scale: 0.9,
+            transition: { duration: 0.6 },
+          }}
           transition={transitionDefault}
         />
       </AnimatePresence>
