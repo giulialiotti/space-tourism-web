@@ -15,3 +15,12 @@ export const transitionDefault = {
   ease: "easeInOut",
   duration: 1,
 };
+
+export const exitDefault = {
+  opacity: 0,
+  transition: {
+    type: "tween",
+    duration: 0.3,
+    ease: "easeIn",
+  },
+};

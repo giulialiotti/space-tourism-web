@@ -1,4 +1,4 @@
-import { transitionDefault } from "../animations";
+import { transitionDefault, exitDefault } from "../animations";
 
 // Framer Motion animation variants
 
@@ -11,6 +11,7 @@ export const revealImage = {
       ...transitionDefault,
     },
   },
+  exit: exitDefault,
 };
 
 export const revealHeadline = {
@@ -23,6 +24,7 @@ export const revealHeadline = {
       ...transitionDefault,
     },
   },
+  exit: exitDefault,
 };
 
 export const revealDescription = {
@@ -35,4 +37,5 @@ export const revealDescription = {
       ...transitionDefault,
     },
   },
+  exit: exitDefault,
 };

@@ -2,6 +2,7 @@ import React from "react";
 
 // External components
 import { Flex, Box, Button } from "theme-ui";
+import { AnimatePresence } from "framer-motion";
 
 // Local Components
 import {
@@ -78,9 +79,6 @@ const ContentWrapper = ({ children }) => (
       pl: [0, 0, "11.53%"],
       mt: [0, 0, "1.81%"],
     }}
-    // Animation values
-    initial="initial"
-    animate="animate"
   >
     {children}
   </MotionBox>
@@ -97,18 +95,23 @@ const ImagesWrapper = ({ data, stepIndex, isDesktop }) => (
       overflow: "hidden",
     }}
   >
-    <ImageContainer
-      img={
-        isDesktop
-          ? data[stepIndex].images.portrait
-          : data[stepIndex].images.landscape
-      }
-      alt={data[stepIndex].images.alt}
-      sx={{ "& > div": { width: "100%" } }}
-      // Animation values
-      variants={revealImage}
-      key={`technology-page__images-wrapper__image-${stepIndex}`}
-    />
+    <AnimatePresence exitBeforeEnter>
+      <ImageContainer
+        img={
+          isDesktop
+            ? data[stepIndex].images.portrait
+            : data[stepIndex].images.landscape
+        }
+        alt={data[stepIndex].images.alt}
+        sx={{ "& > div": { width: "100%" } }}
+        // Animation values
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={revealImage}
+        key={`technology-page__images-wrapper__image-${stepIndex}`}
+      />
+    </AnimatePresence>
   </Box>
 );
 
@@ -167,33 +170,43 @@ const TextBlock = ({ caption, data, stepIndex, isDesktop }) => (
 );
 
 const TextBlockHeadline = ({ data, stepIndex, isDesktop }) => (
-  <HeadingThree
-    className="text-blocks__headline"
-    key={`text-blocks__headline-${stepIndex}`}
-    sx={{ mt: ["2.4%", "2.09%", "2.35%"] }}
-    // Animation values
-    variants={revealHeadline}
-    style={{ originX: isDesktop ? 0 : 0.5 }}
-  >
-    {data[stepIndex].name}
-  </HeadingThree>
+  <AnimatePresence exitBeforeEnter>
+    <HeadingThree
+      className="text-blocks__headline"
+      key={`text-blocks__headline-${stepIndex}`}
+      sx={{ mt: ["2.4%", "2.09%", "2.35%"] }}
+      // Animation values
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={revealHeadline}
+      style={{ originX: isDesktop ? 0 : 0.5 }}
+    >
+      {data[stepIndex].name}
+    </HeadingThree>
+  </AnimatePresence>
 );
 
 const TextBlockDescription = ({ data, stepIndex, isDesktop }) => (
-  <BodyText
-    className="text-blocks__descriptions"
-    key={`text-blocks__descriptions-${stepIndex}`}
-    sx={{
-      mt: ["4.27%", "2.09%", "3.63%"],
-      mx: ["auto", "auto", 0],
-      maxWidth: [300, 442, 444],
-    }}
-    // Animation values
-    style={{ originX: isDesktop ? 0 : 0.5 }}
-    variants={revealDescription}
-  >
-    {data[stepIndex].description}
-  </BodyText>
+  <AnimatePresence exitBeforeEnter>
+    <BodyText
+      className="text-blocks__descriptions"
+      key={`text-blocks__descriptions-${stepIndex}`}
+      sx={{
+        mt: ["4.27%", "2.09%", "3.63%"],
+        mx: ["auto", "auto", 0],
+        maxWidth: [300, 442, 444],
+      }}
+      // Animation values
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      style={{ originX: isDesktop ? 0 : 0.5 }}
+      variants={revealDescription}
+    >
+      {data[stepIndex].description}
+    </BodyText>
+  </AnimatePresence>
 );
 
 const Background = () => (
