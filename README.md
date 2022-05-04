@@ -33,7 +33,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [Add live site URL here](https://space-tourism-web-giulialiotti.vercel.app/)
+- Live Site URL: [Space Tourism Web](https://space-tourism-web-giulialiotti.vercel.app/)
 
 ## My process
 
